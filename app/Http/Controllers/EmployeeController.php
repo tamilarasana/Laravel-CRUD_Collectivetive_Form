@@ -23,7 +23,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-       $getEmployeeRecords = $this->employeeObject->getEmployeeRecords();
+       $getEmployeeRecords = $this->employeeObject->getEmployeeRecords();   
        return view('employee.index', ['employee' => $getEmployeeRecords]);
     }
 
@@ -82,10 +82,8 @@ class EmployeeController extends Controller
      */
     public function update(EmployeeRequest $request, $id)
     {
-
         $storeEmployeedata = $this->employeeObject->createORupdateemployee($request, $id);
         return Redirect::route('employee.index')->with('success', 'Updated successfully.');
-        
     }
 
     /**

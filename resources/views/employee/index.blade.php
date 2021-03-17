@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layoutS.app')
 @section('content')
 <div class = "contant mt-2">
     <div class="card ">
@@ -42,14 +42,14 @@
                 @if(@$employee )
                 @foreach($employee as $employees)  
                     <tr>         
-                      <td>{{$employees->employee_id}}</td>
-                      <td>{{$employees->employee_name}}</td>
-                      <td>{{$employees->phone_number}}</td>
-                      <td>{{$employees->employee_email}}</td>
-                      <td>{{$employees->gender}}</td>
-                      <td>{{$employees->date_of_birth}}</td>
-                      <td>{{$employees->department}}</td>
-                      <td>{{$employees->employee_address}}</td>
+                      <td class = "align-middle">{{$employees->employee_id}}</td>
+                      <td class = "align-middle">{{$employees->employee_name}}</td>
+                      <td class = "align-middle">{{$employees->phone_number}}</td>
+                      <td class = "align-middle">{{$employees->employee_email}}</td>
+                      <td class = "align-middle">{{$employees->gender}}</td>
+                      <td class = "align-middle">{{$employees->date_of_birth}}</td>
+                      <td class = "align-middle">{{$employees->department}}</td>
+                      <td class = "align-middle">{{$employees->employee_address}}</td>
                       <td>
                         <img src="{{ $employees->empolyee_image }}" width="100"/>
                       </td>
@@ -62,25 +62,15 @@
                           {!! Form::close()!!}
                         </a>
                       </td>
-                      {{-- <td> <a class="btn btn-success"  href="{{route('employee.edit',$employees->id)}}">Edit</a></td> --}}
-                        {{-- <td> <a class="btn btn-success"  href="{{route('employee.edit',$employees->id)}}">Edit</a> --}}
-                        <!-- <td><a class="btn btn-success"  href="/employee/{{$employees -> id}}/edit">Edit</a>&nbsp; -->
-                      {{-- <td>
-                        <a>
-                          {!! Form::open([ 'method'=> 'DELETE ','action' => ['EmployeeController@destroy',$employees->id], 'class' => 'form-horizontal']) !!} 
-                          {!! Form::hidden('_method', 'DELETE')!!}
-                          {!! Form::submit('Delete',['class'=> 'btn btn-danger'])!!}
-                          {!! Form::close()!!}
-                        </a>
-                      </td> --}}
                     </tr>
                     @endforeach
                 @endif    
-            </tbody>
+            </tbody>           
           </table>
-        </div>
-      </div>   
-    </div>
+          {{$employee->links()}}         
+        </div>       
+      </div>         
+    </div>    
 </div>
 </div>
 @stop
