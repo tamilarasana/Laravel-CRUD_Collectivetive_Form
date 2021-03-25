@@ -7,6 +7,8 @@ use App\Http\Requests\EmployeeRequest;
 use App\Models\Employee;
 use Redirect;
 use File;
+use PDF;
+use Toastr;
 
 class EmployeeController extends Controller
 {
@@ -47,7 +49,10 @@ class EmployeeController extends Controller
     {
         $storeEmployeedata = $this->employeeObject->createORupdateemployee($request);
         // dd($storeEmployeedata);
-        return Redirect::route('employee.index')->with('success', 'created successfully.');
+        Toastr::success('Created successfully :)','Success');
+
+        return Redirect::route('employee.index');
+        // ->with('success', 'created successfully.')
     }
 
     /**
@@ -83,7 +88,10 @@ class EmployeeController extends Controller
     public function update(EmployeeRequest $request, $id)
     {
         $storeEmployeedata = $this->employeeObject->createORupdateemployee($request, $id);
-        return Redirect::route('employee.index')->with('success', 'Updated successfully.');
+        Toastr::info('Update successfully :)','Success');
+
+        return Redirect::route('employee.index');
+        // ->with('success', 'Updated successfully.')
     }
 
     /**
@@ -101,9 +109,28 @@ class EmployeeController extends Controller
         if(!empty($deleteable_img)){
             unlink( $deleteable_img);
         $employee -> delete();
-        return Redirect::route('employee.index')->with('success', 'deleted successfully.');
+        Toastr::warning('Delete successfully :)','Success');
+
+        return Redirect::route('employee.index');
+        // ->with('success', 'deleted successfully.')
      }
     }
+
+    public function downloadPDF($id){
+        // dd($id);
+
+        $employee = Employee::find($id);
+
+        $pdf = PDF::loadView('employee.edit', compact('employee'));
+        return $pdf->download('employees.pdf');
+
+    }
+     // Helper function
+     public function checkHelper(){
+       $value = getMyText();
+       $arrValue = makeArray($value);
+       return $arrValue;
+     }
 }
 
 

@@ -51,6 +51,23 @@ class Employee extends Model
         }
         return $employee_data;
     }
+
+    // mutators
+
+    public function setEmployeeNameAttribute($value){
+        $this->attributes['employee_name'] = ucfirst($value);
+
+    }
+    public function setDepartmentAttribute($value){
+        $this->attributes['department'] = ucfirst($value);
+
+    }
+    // Accessors
+
+     public function getEmployeeNameAttribute($value){
+        return strtoupper($value);
+
+    }
 }
 
 

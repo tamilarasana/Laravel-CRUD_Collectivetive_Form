@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,12 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function () {    
     Route::resource('employee', EmployeeController::class);
+     // Route::get('/download/{id}', [App\Http\Controllers\EmployeeController::class, 'downloadPDF']);
+    Route::get('/helper', [App\Http\Controllers\EmployeeController::class, 'checkHelper']);
+
+
+    Route::get('/delete/employee/{id}', [App\Http\Controllers\EmployeeController::class, 'destroy'])->name('employee.deleteRec');
+
 });
 
 // Auth::routes();
