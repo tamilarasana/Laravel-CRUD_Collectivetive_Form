@@ -4,8 +4,7 @@
     <div class="card ">
       <div class="card-header py-1">
       <div class="col-md-12 text-center my-auto">     
-        <div class="card-body py-1">
-            
+        <div class="card-body py-1">            
             <a href="{!! route('employee.index')!!}"class="btn btn-primary float-right">Back</a> 
             <h3>Registration Page.</h3>         
           </div> 
@@ -67,7 +66,6 @@
                                     </span>
                                  @endif
                         </div>
-
                     </div>  
                      <!-- Radio Buttons -->
                      <div class="form-group row">

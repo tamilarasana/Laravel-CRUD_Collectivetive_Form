@@ -4,18 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-// use Illuminate\Database\Eloquent\SoftDeletes;
-
-
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Employee extends Model
 {
-    // use SoftDeletes;
+    use SoftDeletes;
     use HasFactory; 
     protected $table = 'employee_details';
     protected $primaryKey = 'id';
-    // protected $fillable = ['employee_id','employee_name','phone_number','employee_email','gender','date_of_birth','department','employee_address','empolyee_image'];
     public $timestamp = true;
      protected $fillable = ['employee_id','employee_name','phone_number','employee_email','gender','date_of_birth','department','employee_address','empolyee_image'];
 
@@ -51,22 +47,22 @@ class Employee extends Model
         }
         return $employee_data;
     }
-
     // mutators
-
     public function setEmployeeNameAttribute($value){
         $this->attributes['employee_name'] = ucfirst($value);
-
     }
     public function setDepartmentAttribute($value){
         $this->attributes['department'] = ucfirst($value);
-
     }
     // Accessors
-
      public function getEmployeeNameAttribute($value){
         return strtoupper($value);
-
+    }
+    public function updateEmployeeaddress($data){
+        $employee_data = Employee::findorFail($data["id"]);     
+        $employee_data->update($data);
+        return $employee_data;
+        
     }
 }
 

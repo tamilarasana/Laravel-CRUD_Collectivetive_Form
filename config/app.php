@@ -164,6 +164,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         \Maatwebsite\Excel\ExcelServiceProvider::class,
         Brian2694\Toastr\ToastrServiceProvider::class,
+        \Yajra\DataTables\DataTablesServiceProvider::class,
 
 
 
@@ -234,6 +235,8 @@ return [
         'PDF'  => \Barryvdh\DomPDF\Facade::class,
         'Excel' => \Maatwebsite\Excel\Facades\Excel::class,
         'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
+        'DataTables' => \Yajra\DataTables\Facades\DataTables::class,
+
 
         
 

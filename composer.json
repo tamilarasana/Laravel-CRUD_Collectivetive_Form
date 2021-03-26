@@ -20,7 +20,9 @@
         "laravel/tinker": "^2.5",
         "laravelcollective/html": "^6.2",
         "maatwebsite/excel": "^3.1",
-        "phenx/php-font-lib": "^0.5.2"
+        "phenx/php-font-lib": "^0.5.2",
+        "yajra/laravel-datatables": "^1.5",
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

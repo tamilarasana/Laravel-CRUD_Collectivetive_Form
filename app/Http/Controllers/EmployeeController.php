@@ -9,6 +9,7 @@ use Redirect;
 use File;
 use PDF;
 use Toastr;
+use App\DataTables\EmployeeDataTable;
 
 class EmployeeController extends Controller
 {
@@ -16,15 +17,13 @@ class EmployeeController extends Controller
 
     public function __construct(Employee $employeeObject){     //Employee ->  Response and $employeeObject -> Request
         $this->employeeObject = $employeeObject;
-        
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
        $getEmployeeRecords = $this->employeeObject->getEmployeeRecords();   
        return view('employee.index', ['employee' => $getEmployeeRecords]);
     }
@@ -34,8 +33,7 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
         return view('employee.create');
     }
 
@@ -45,14 +43,11 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EmployeeRequest $request)
-    {
+    //Store a newly created resource in storage
+    public function store(EmployeeRequest $request){
         $storeEmployeedata = $this->employeeObject->createORupdateemployee($request);
-        // dd($storeEmployeedata);
-        Toastr::success('Created successfully :)','Success');
-
+           Toastr::success('Created successfully :)','Success');
         return Redirect::route('employee.index');
-        // ->with('success', 'created successfully.')
     }
 
     /**
@@ -75,6 +70,7 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $employee = Employee::find($id);
+        
         return view('employee.edit')->with('employee',$employee);
     }
 
@@ -89,7 +85,6 @@ class EmployeeController extends Controller
     {
         $storeEmployeedata = $this->employeeObject->createORupdateemployee($request, $id);
         Toastr::info('Update successfully :)','Success');
-
         return Redirect::route('employee.index');
         // ->with('success', 'Updated successfully.')
     }
@@ -100,37 +95,44 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $employee = Employee::find($id);
-       
-        $deleteable_img  = $employee->empolyee_image; 
-        
+    public function destroy($id){
+        $employee = Employee::find($id);       
+        $deleteable_img  = $employee->empolyee_image;         
         if(!empty($deleteable_img)){
             unlink( $deleteable_img);
-        $employee -> delete();
-        Toastr::warning('Delete successfully :)','Success');
-
-        return Redirect::route('employee.index');
-        // ->with('success', 'deleted successfully.')
-     }
+            $employee -> delete();
+            Toastr::warning('Delete successfully :)','Success');
+            return Redirect::route('employee.index');
+            // ->with('success', 'deleted successfully.')
+        }
+    }
+     
+    public function getEmployeeById($id) {
+        $employee = Employee::find($id);   
+        return response()->json($employee);
+    }
+    //update address only 
+    public function updateAddress(Request  $request){       
+      $data =  $this->employeeObject->updateEmployeeaddress($request->except('_token'));
     }
 
+    //download employee data in pdf 
     public function downloadPDF($id){
-        // dd($id);
-
         $employee = Employee::find($id);
-
         $pdf = PDF::loadView('employee.edit', compact('employee'));
         return $pdf->download('employees.pdf');
-
     }
+
      // Helper function
-     public function checkHelper(){
+    public function checkHelper(){
        $value = getMyText();
        $arrValue = makeArray($value);
        return $arrValue;
-     }
+    }
+
+    public function employeeDeatils(EmployeeDataTable $dataTable){
+         return $dataTable->render('employee.employeedetails');
+    }
 }
 
 
