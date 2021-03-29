@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +27,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/delete/employee/{id}', [App\Http\Controllers\EmployeeController::class, 'destroy'])->name('employee.deleteRec');
     Route::get('/emp/{id}', [App\Http\Controllers\EmployeeController::class, 'getEmployeeById']); 
     Route::post('/empupdate', [App\Http\Controllers\EmployeeController::class, 'updateAddress'])->name('address.update'); 
-    // Route::get('/employeedata',[App\Http\Controllers\EmployeeController::class, 'employeeDeatils']);
+    Route::get('/employeedata',[App\Http\Controllers\EmployeeController::class, 'employeeDeatils']);
+
+    Route::get('/addNewbook',[App\Http\Controllers\BookController::class, 'addNewBook']);
+    Route::post('/storebook', [App\Http\Controllers\BookController::class, 'storeBook'])->name('storeBook');
+    Route::get('/viewbook',[App\Http\Controllers\BookController::class, 'viewBook']);
+    Route::get('/delete/book/{id}',[App\Http\Controllers\BookController::class, 'destroy'])->name('book.delete');
+    Route::get('/edit/book/{id}',[App\Http\Controllers\BookController::class, 'editBook'])->name('book.edit');
+    Route::post('/update/book',[App\Http\Controllers\BookController::class, 'update'])->name('book.update');
+
+    
 
 });

@@ -46,15 +46,19 @@ class EmployeeDataTable extends DataTable
                     ->setTableId('employee-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    // ->dom('Bfrtip')
-                    ->orderBy(1);
-                    // ->buttons(
-                    //     Button::make('create'),
-                    //     Button::make('export'),
-                    //     Button::make('print'),
-                    //     Button::make('reset'),
-                    //     Button::make('reload')
-                    // );
+                    ->dom('Bfrtip')
+                    ->orderBy(1)
+                    ->buttons(
+                        // Button::make('create'),
+                        // Button::make('export'),
+                        // Button::make('print'),
+                        // Button::make('reset'),
+                        // Button::make('reload'),
+                        Button::make('excel'),
+                        Button::make('csv')
+                    );
+
+    
     }
 
     /**
@@ -65,16 +69,61 @@ class EmployeeDataTable extends DataTable
     protected function getColumns()
     {
         return [
-                'Employee ID',
-                'Employee Name',
-                 'Phone Number',
-                  'Email',
-                  'Gender',
-                  'Date of Birth',
-                  'Department',
-                  'Address',
-                   'Image',
-
+            'employee_id' => [
+                'searchable' => true,
+                'title' => "Employee id",
+                'orderable' => true,
+            ],
+            'employee_name' => [
+                'searchable' => true,
+                'title' => "Employee Name",
+                'orderable' => true,
+            ],
+            'phone_number' => [
+                'searchable' => true,
+                'title' => "Employee PhoneNumber",
+                'orderable' => true,
+            ],
+            'employee_email' => [
+                'searchable' => true,
+                'title' => "Employee Email",
+                'orderable' => true,
+            ],
+            'gender' => [
+                'searchable' => true,
+                'title' => "Gender",
+                'orderable' => true,
+            ],
+            'date_of_birth' => [
+                'searchable' => true,
+                'title' => "Date of Birth",
+                'orderable' => true,
+            ],
+            'department' => [
+                'searchable' => true,
+                'title' => "Department",
+                'orderable' => true,
+            ],
+            'employee_address' => [
+                'searchable' => true,
+                'title' => "Address",
+                'orderable' => true,
+            ],
+            'empolyee_image' => [
+                'searchable' => true,
+                'title' => "Image",
+                'data' => 'empolyee_image',
+                'orderable' => true,
+            ],
+            
+       
+               
+              'action'
+          
+              
+        
+           
+             
             // Column::computed('action')
             //       ->exportable(false)
             //       ->printable(false)

@@ -160,11 +160,12 @@ return [
         Illuminate\Session\SessionServiceProvider::class,
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
-        Illuminate\View\ViewServiceProvider::class,\
+        Illuminate\View\ViewServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         \Maatwebsite\Excel\ExcelServiceProvider::class,
         Brian2694\Toastr\ToastrServiceProvider::class,
         \Yajra\DataTables\DataTablesServiceProvider::class,
+        \Yajra\DataTables\ButtonsServiceProvider::class,
 
 
 
@@ -235,8 +236,7 @@ return [
         'PDF'  => \Barryvdh\DomPDF\Facade::class,
         'Excel' => \Maatwebsite\Excel\Facades\Excel::class,
         'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
-        'DataTables' => \Yajra\DataTables\Facades\DataTables::class,
-
+        'DataTables' => \Yajira\DataTables\Facades\DataTables::class,
 
         
 

@@ -16,7 +16,7 @@ class Employee extends Model
      protected $fillable = ['employee_id','employee_name','phone_number','employee_email','gender','date_of_birth','department','employee_address','empolyee_image'];
 
     public function getEmployeeRecords(){
-        // $employee_details = Employee::get();
+        //  
         $employee_details = Employee::simplepaginate(5);       
         return $employee_details;
     }

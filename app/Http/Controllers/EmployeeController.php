@@ -133,6 +133,7 @@ class EmployeeController extends Controller
     public function employeeDeatils(EmployeeDataTable $dataTable){
          return $dataTable->render('employee.employeedetails');
     }
+    
 }
 
 

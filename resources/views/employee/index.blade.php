@@ -5,6 +5,7 @@
       <div class="card-header py-1">
 			<div class="col-md-12 text-center my-auto">     
 				<div class="card-body py-1">
+					<a href="viewbook"class="btn btn-success float-right">View Book</a> 
 					<a href="{!! route('employee.create')!!}"class="btn btn-primary float-right">New</a> 
 					<h3>Employee Details</h3>         
 				</div> 
@@ -84,7 +85,7 @@
 		</div>
     </div>	
 </div>
-<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+{{-- <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script> --}}
 <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 	{!! Toastr::message() !!}
 	@if(Session::has('success'))

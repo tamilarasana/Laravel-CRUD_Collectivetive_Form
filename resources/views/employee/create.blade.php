@@ -137,7 +137,16 @@
                                 </span>
                             @endif
                         </div>                        
-                    </div>                                          
+                    </div>  
+                    
+                    {{-- mulltiselect --}}
+                     <div class="form-group row">
+                        {!! Form::label('empolyee_image', 'Image:', ['class'=>'col-md-1 col-form-label text-md-right custom_required']) !!}
+                        <div class="col-lg-8">
+                            {!! Form::text('empolyee_image', @$empolyee_image, ['class' => 'form-control','required']) !!}
+                                             
+                    </div>  
+
                     <!-- Submit Button -->
                     <div class="form-group">
                         <div class="col-lg-8 col-lg-offset-2">
