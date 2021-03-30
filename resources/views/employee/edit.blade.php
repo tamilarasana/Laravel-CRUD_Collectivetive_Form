@@ -4,7 +4,8 @@
     <div class="card ">
       <div class="card-header py-1">
       <div class="col-md-12 text-center my-auto">     
-        <div class="card-body py-1">            
+        <div class="card-body py-1">
+            
             <a href="{!! route('employee.index')!!}"class="btn btn-primary float-right">Back</a> 
             <h3>Registration Page.</h3>         
           </div> 
@@ -66,6 +67,7 @@
                                     </span>
                                  @endif
                         </div>
+
                     </div>  
                      <!-- Radio Buttons -->
                      <div class="form-group row">
@@ -143,7 +145,7 @@
                     <!-- Submit Button -->
                     <div class="form-group">
                         <div class="col-lg-8 col-lg-offset-2">
-                            {!! Form::submit('Update', ['class' => 'btn btn-md btn-info '] ) !!}
+                            {!! Form::submit('Update', ['class' => 'btn btn-md btn-info pull-right'] ) !!}
                         </div>
                     </div>             
                 {!! Form::close()  !!}    

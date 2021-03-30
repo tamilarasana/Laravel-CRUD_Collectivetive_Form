@@ -67,7 +67,7 @@
                         </div>
                     </div>  
                      <!-- Radio Buttons -->
-                    <div class="form-group row">
+                     <div class="form-group row">
                         {!! Form::label('gender', 'Gender:', ['class'=>'col-md-1 col-form-label text-md-right custom_required',]) !!}
                         <div class="invalid-feedback">Please Enter Gender.</div>
                         <div class="col-lg-8">
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                      <!-- Date of Birth -->
-                    <div class="form-group row ">
+                     <div class="form-group row ">
                         {!! Form::label('date_of_birth', 'Date of Birth:', ['class'=>'col-md-1 col-form-label text-md-right custom_required']) !!}
                         <div class="col-lg-8">
                             {!! Form::date('date_of_birth', @$date_of_birth, ['class' => 'form-control','required' ]) !!}
@@ -137,24 +137,14 @@
                                 </span>
                             @endif
                         </div>                        
-                    </div>  
-                    
-                    {{-- mulltiselect --}}
-                     <div class="form-group row">
-                        {!! Form::label('empolyee_image', 'Image:', ['class'=>'col-md-1 col-form-label text-md-right custom_required']) !!}
-                        <div class="col-lg-8">
-                            {!! Form::text('empolyee_image', @$empolyee_image, ['class' => 'form-control','required']) !!}
-                                             
-                    </div>  
-
+                    </div>                                          
                     <!-- Submit Button -->
                     <div class="form-group">
                         <div class="col-lg-8 col-lg-offset-2">
-                            {!! Form::submit('Submit', ['class' => 'btn btn-md btn-info employeeSave'] ) !!}
+                            {!! Form::submit('Submit', ['class' => 'btn btn-md btn-info pull-right employeeSave'] ) !!}
                         </div>
                     </div>             
-                {!! Form::close()  !!} 
-
+                {!! Form::close()  !!}    
                 <script>
                     (function() {
                     'use strict';
@@ -172,10 +162,10 @@
                       }, false);
                     })();
                   </script>         
-             </div>       
-          </div>
-       </div>   
+            </div>       
+        </div>
+      </div>   
     </div>
-  </div>
+</div>
 </div>
 @stop

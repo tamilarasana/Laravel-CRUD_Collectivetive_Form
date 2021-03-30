@@ -24,7 +24,6 @@ class CreateEmployeeDetailsTable extends Migration
             $table->string('department', 45);
             $table->string('employee_address', 100);
             $table->string('empolyee_image', 255);
-            $table->softDeletes();
             $table->timestamps();
         });
     }
