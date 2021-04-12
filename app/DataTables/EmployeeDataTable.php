@@ -33,6 +33,7 @@ class EmployeeDataTable extends DataTable
     public function query(Employee $model)
     {
         return $model->newQuery();
+        
     }
 
     /**
@@ -57,8 +58,7 @@ class EmployeeDataTable extends DataTable
                         Button::make('excel'),
                         Button::make('csv')
                     );
-
-    
+                        
     }
 
     /**
@@ -118,7 +118,7 @@ class EmployeeDataTable extends DataTable
             
        
                
-              'action'
+              
           
               
         

@@ -21,13 +21,13 @@
                         {!! Form::label('book_name', 'Book Name:', ['class'=>'col-md-1 col-form-label text-md-right custom_required']) !!}
                         <div class="col-lg-8">
                             {!! Form::text('book_name', @$book_name   , ['class' => 'form-control', 'required', 'placeholder' => 'Book Name', 'pattern'=> '^[a-z A-Z0-9_.-]*$']) !!}
-                            {{-- <div class="invalid-feedback">Please Enter Employee Name.</div>
+                            <div class="invalid-feedback">Please Enter Book Name.</div>
                                 @if($errors->has('employee_name'))
                                     <span class="text-danger">
                                         <li>Oops!  {{$errors->first('employee_name')}}</li>
                                     </span>
                                 @endif 
-                        </div>                        --}}
+                        </div>                        
                     </div>     
                
                  

@@ -5,7 +5,9 @@
       <div class="card-header py-1">
 			<div class="col-md-12 text-center my-auto">     
 				<div class="card-body py-1">
-					<a href="addNewbook"class="btn btn-success float-right">New Book</a> 
+					<a href="addNewbook"class="btn btn-success float-right">New Book </a>
+					<a href="{!! route('employee.index')!!}"class="btn btn-primary float-right mr-1">Back</a> 
+
 					{{-- <a href="{!! route('employee.create')!!}"class="btn btn-primary float-right">New</a>  --}}
 					<h3>Employee Details</h3>         
 				</div> 
@@ -35,7 +37,7 @@
                            {{-- @endif --}}
 					</tbody>           
 				</table>
-				{{-- {{$employee->links()}}  --}}
+				 {{$getRecords->links()}} 
 			</div>       
 		</div>         
       </div>    

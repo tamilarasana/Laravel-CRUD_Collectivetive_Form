@@ -67,7 +67,7 @@
                         </div>
                     </div>  
                      <!-- Radio Buttons -->
-                     <div class="form-group row">
+                    <div class="form-group row">
                         {!! Form::label('gender', 'Gender:', ['class'=>'col-md-1 col-form-label text-md-right custom_required',]) !!}
                         <div class="invalid-feedback">Please Enter Gender.</div>
                         <div class="col-lg-8">
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                      <!-- Date of Birth -->
-                     <div class="form-group row ">
+                    <div class="form-group row ">
                         {!! Form::label('date_of_birth', 'Date of Birth:', ['class'=>'col-md-1 col-form-label text-md-right custom_required']) !!}
                         <div class="col-lg-8">
                             {!! Form::date('date_of_birth', @$date_of_birth, ['class' => 'form-control','required' ]) !!}
@@ -104,7 +104,7 @@
                     <div class="form-group row">
                         {!! Form::label('select', 'Department:', ['class'=>'col-md-1 col-form-label text-md-right custom_required'] )  !!}
                         <div class="col-lg-8">
-                            {!!  Form::select('department', [ '' => 'Select',' fullstack developer' => 'FullStack Developer', 'web developer' => 'Web Developer', 'front end developer' => 'Front end developer', 'tester' => 'Tester'],  'S', ['class' => 'form-control','required']) !!}
+                            {!!  Form::select('department', [ '' => 'Select',' fullstack developer' => 'FullStack Developer', 'web developer' => 'Web Developer', 'front end developer' => 'Front end developer', 'tester' => 'Tester'],'', ['class' => 'form-control','required']) !!}
                             <div class="invalid-feedback">Please Select Your Department.</div>
                                 @if($errors->has('department'))
                                     <span class="text-danger">
@@ -129,7 +129,10 @@
                     <div class="form-group row">
                         {!! Form::label('empolyee_image', 'Image:', ['class'=>'col-md-1 col-form-label text-md-right custom_required']) !!}
                         <div class="col-lg-8">
-                            {!! Form::file('empolyee_image', @$empolyee_image, ['class' => 'form-control','required']) !!}
+                            {{-- {!! Form::file('empolyee_image',['onchange'=>'previewFile(this)']) !!} --}}
+                            {!! Form::file('empolyee_image', ['required' ,'onchange'=>'previewFile(this)']) !!}
+                            {{-- {!! Form::file('empolyee_image', @$empolyee_image,null, ['class' => 'form-control','required' ,'onchange'=>'previewFile(this)']) !!} --}}
+                            <img id="previewImg" style="max-width:120px;margin-top:30px;">
                             <div class="invalid-feedback">Please Select Your Image.</div>
                             @if($errors->has('empolyee_image'))
                                 <span class="text-danger">
@@ -137,14 +140,24 @@
                                 </span>
                             @endif
                         </div>                        
-                    </div>                                          
+                    </div>  
+                    
+                    {{-- mulltiselect --}}
+                     <div class="form-group row">
+                        {!! Form::label('book_name', 'Book:', ['class'=>'col-md-1 col-form-label text-md-right custom_required']) !!}
+                        <div class="col-lg-8">
+                            {!!  Form::select('book_name[]',$book,null,['class'=>'selectpicker','multiple data-live-search'=>true]) !!}   
+                                                                    
+                    </div>  
+
                     <!-- Submit Button -->
                     <div class="form-group">
                         <div class="col-lg-8 col-lg-offset-2">
-                            {!! Form::submit('Submit', ['class' => 'btn btn-md btn-info pull-right employeeSave'] ) !!}
+                            {!! Form::submit('Submit', ['class' => 'btn btn-md btn-info employeeSave','on'=>'previewFile(this)'] ) !!}
                         </div>
                     </div>             
-                {!! Form::close()  !!}    
+                {!! Form::close()  !!} 
+
                 <script>
                     (function() {
                     'use strict';
@@ -161,11 +174,24 @@
                         });
                       }, false);
                     })();
-                  </script>         
-            </div>       
-        </div>
-      </div>   
+                  </script>  
+                  
+                  <script>
+                        function previewFile(input) {
+                            var file = $("input[type=file]").get(0).files[0];
+                                if (file) {
+                                    var reader = new FileReader();
+                                        reader.onload = function() {
+                                        $('#previewImg').attr("src", reader.result);
+                                        }
+                                    reader.readAsDataURL(file);
+                               }
+                        }
+                  </script>
+             </div>       
+          </div>
+       </div>   
     </div>
-</div>
+  </div>
 </div>
 @stop

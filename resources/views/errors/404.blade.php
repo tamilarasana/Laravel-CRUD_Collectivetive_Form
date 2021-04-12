@@ -1,20 +1,45 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html>
 <head>
-<script>
-setTimeout(function(){
-    window.location.href="/";
-},5000);
-</script>
-<style>
-h1 {text-align: center;}
-p {text-align: center;}
-
-</style>
+    <script>
+        setTimeout(function(){
+            window.location.href="/";
+        },5000);
+    </script>
+    <style>
+        h1 {text-align: center;}
+        p {text-align: center;}
+    </style>
 </head>
-<body>
+    <body>
+        <h1>Oops! The Page is  Not Available</h1>
+        <h2><p>404: Page not found  </p></h2>
+    </body>
+</html> --}}
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <script>
+        setTimeout(function(){
+            window.location.href="/";
+        },5000);
+    </script>
 
-<h1>Oops! The Page is  Not Available</h1>
-<h2><p>404: Page not found  </p></h2>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>404 Custom Error Page Example</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+</head>
+
+<body>
+    <div class="container mt-5 pt-5">
+        <div class="alert alert-danger text-center">
+            <h2 class="display-3">404</h2>
+            <p class="display-5">Oops! Something is wrong.</p>
+        </div>
+    </div>
 </body>
+
 </html>

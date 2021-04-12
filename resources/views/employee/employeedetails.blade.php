@@ -17,15 +17,15 @@
   <script src="/vendor/datatables/buttons.server-side.js"></script>
 </head>
 <body>
-    <section  style="padding-top:60px;">
-        <div class="continer">
-            <div class = "row">
-              <div class="col-md-12">
-                  {!! $dataTable->table() !!}
+      <section  style="padding-top:60px;">
+          <div class="continer">
+              <div class = "row">
+                <div class="col-md-12">
+                    {!! $dataTable->table() !!}
+                </div>
               </div>
-            </div>
-        </div>
-    </section>
-    {!!$dataTable->scripts()!!}         
-</body>
+          </div>
+      </section>
+      {!! $dataTable->scripts()!!}         
+  </body>
 </html>

@@ -4,8 +4,7 @@
     <div class="card ">
       <div class="card-header py-1">
       <div class="col-md-12 text-center my-auto">     
-        <div class="card-body py-1">
-            
+        <div class="card-body py-1">            
             <a href="{!! route('employee.index')!!}"class="btn btn-primary float-right">Back</a> 
             <h3>Registration Page.</h3>         
           </div> 
@@ -67,7 +66,6 @@
                                     </span>
                                  @endif
                         </div>
-
                     </div>  
                      <!-- Radio Buttons -->
                      <div class="form-group row">
@@ -104,9 +102,9 @@
                     </div>    
                      <!-- Department -->         
                     <div class="form-group row">
-                        {!! Form::label('select', 'Department:', ['class'=>'col-md-1 col-form-label text-md-right custom_required'] )  !!}
+                        {!! Form::label('department', 'Department:', ['class'=>'col-md-1 col-form-label text-md-right custom_required'] )  !!}
                         <div class="col-lg-8">
-                            {!!  Form::select('department', [ '' => 'Select',' fullstack developer' => 'FullStack Developer', 'web developer' => 'Web Developer', 'front end developer' => 'Front end developer', 'tester' => 'Tester'],  $employee->department, ['class' => 'form-control','required',]) !!}
+                            {!!  Form::select('department', [ '' => 'Select',' fullstack developer' => 'FullStack Developer', 'web developer' => 'Web Developer', 'front end developer' => 'Front end developer', 'tester' => 'Tester'],$employee->department, ['class' => 'form-control','required',]) !!}
                               <div class="invalid-feedback">Please Select Your Department.</div>
                                 @if($errors->has('department'))
                                     <span class="text-danger">
@@ -145,7 +143,7 @@
                     <!-- Submit Button -->
                     <div class="form-group">
                         <div class="col-lg-8 col-lg-offset-2">
-                            {!! Form::submit('Update', ['class' => 'btn btn-md btn-info pull-right'] ) !!}
+                            {!! Form::submit('Update', ['class' => 'btn btn-md btn-info '] ) !!}
                         </div>
                     </div>             
                 {!! Form::close()  !!}    

@@ -166,6 +166,15 @@ return [
         Brian2694\Toastr\ToastrServiceProvider::class,
         \Yajra\DataTables\DataTablesServiceProvider::class,
         \Yajra\DataTables\ButtonsServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+        L5Swagger\L5SwaggerServiceProvider::class,
+        OwenIt\Auditing\AuditingServiceProvider::class,
+
+        
+        
+
+       
+
 
 
 
@@ -237,6 +246,10 @@ return [
         'Excel' => \Maatwebsite\Excel\Facades\Excel::class,
         'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
         'DataTables' => \Yajira\DataTables\Facades\DataTables::class,
+        'Carbon' => 'Carbon\Carbon',
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
+
 
         
 

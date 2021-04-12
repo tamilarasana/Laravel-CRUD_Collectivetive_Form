@@ -40,6 +40,8 @@ class Handler extends ExceptionHandler
     }
 
     public function render ($request, Throwable $exception){
+
+    //    return response()->json(['message' => $exception->getMessage(),'file' => $exception->getFile()]);
         if($this->isHttpException($exception)){
             if ($exception->getStatusCode()==404){
                 return response()->view('errors.404',[],404);
