@@ -18,8 +18,9 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('user-login', array('as' => 'login', 'uses' => 'Api\V1\AuthController@login'));
     Route::get('test-api', 'Api\V1\AuthController@testApi');
      Route::post('user-register', 'Api\V1\AuthController@register');
-    Route::group(['middleware' => ['auth:api'], 'namespace' => 'API\V1'], function () {    
-
+    Route::group(['namespace' => 'Api\V1'], function () { 
+        Route::apiResource('department', 'DepartmentController'); 
+        Route::apiResource('checklist-category', 'ChecklistCategoryController');   
        
     });
  

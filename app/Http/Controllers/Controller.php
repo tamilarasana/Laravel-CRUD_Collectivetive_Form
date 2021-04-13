@@ -27,9 +27,18 @@ class Controller extends BaseController
      *      url=L5_SWAGGER_CONST_HOST,
      *      description="Demo API Server"
      * )
-
-     *
-     *
-     */
+     * 
+     *  @OA\SecurityScheme(
+    *      securityScheme="bearerAuth",
+    *      in="header",
+    *      name="bearerAuth",
+    *      type="http",
+    *      scheme="bearer",
+    *      bearerFormat="JWT",
+    * )
+    * security={ {"bearerAuth": {}}    }
+    *
+    *
+    */
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
