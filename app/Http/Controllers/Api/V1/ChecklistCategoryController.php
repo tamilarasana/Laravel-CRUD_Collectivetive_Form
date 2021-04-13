@@ -190,7 +190,7 @@ class ChecklistCategoryController extends Controller
      *   tags={"Checklist Category"},
      *   summary="update checklist category",
      *   operationId="put",
-     @OA\Parameter(
+     *@OA\Parameter(
      *    description="ID of category",
      *    in="path",
      *    name="id",

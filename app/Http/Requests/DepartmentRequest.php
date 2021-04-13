@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ChecklistCategoryRequest extends FormRequest
+class DepartmentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,17 +25,9 @@ class ChecklistCategoryRequest extends FormRequest
     {
         $id = $this->method() == 'PUT' ?  \Request::segment(4) : 'NULL';
         return [
-            'name'     => 'required|max:35|unique:checklist_category,name,'.$id.',id,deleted_at,NULL',
+            'name'     => 'required|max:35|unique:department,name,'.$id.',id,deleted_at,NULL',
            
         ];
     }
 }
-
-
-   
- 
-   
-  
- 
-       
 

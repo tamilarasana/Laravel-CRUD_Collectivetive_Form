@@ -3,7 +3,7 @@
  namespace App\Traits;
  use App\Models\ChecklistCategoryModel;
 
- trait ChecklistCategoryTrait {
+trait ChecklistCategoryTrait {
 
  	public function getAllChecklistcategory($params = array()) {
  		return ChecklistCategoryModel::getAllChecklistcategoryByConditions($params);
@@ -27,7 +27,7 @@
  	}
 
  	public function getChecklistCategoryById($id) {
- 		return ChecklistCategoryModel::findOrFail($id);
+ 		return DepartmentModel::findOrFail($id);
  	}
  	public function deleteChecklistCategoryById($id) {
  		$category =  ChecklistCategoryModel::findOrFail($id);
