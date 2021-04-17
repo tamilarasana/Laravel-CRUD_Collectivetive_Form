@@ -11,7 +11,6 @@ use File;
 use PDF;
 use Toastr;
 use Carbon\Carbon;
-
 use App\DataTables\EmployeeDataTable;
 
 class EmployeeController extends Controller

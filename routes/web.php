@@ -36,4 +36,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/edit/book/{id}',[App\Http\Controllers\BookController::class, 'editBook'])->name('book.edit');
     Route::post('/update/book',[App\Http\Controllers\BookController::class, 'update'])->name('book.update');   
 
+    //Category 
+    Route::resource('category', CategoryController::class);
+    Route::get('/delete/category/{id}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('category.delete');
+
+    // Route::GET('/category', [App\Http\Controllers\CategoryController::class, 'categorylist'])->name('category');
+    // Route::POST('/category-store', [App\Http\Controllers\CategoryController::class, 'categoryStore'])->name('category-store');
+    // Route::get('/delete/category/{id}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('categorydelete');
+    // Route::GET('/categorys/{id}', [App\Http\Controllers\CategoryController::class, 'getCategoryBYid']);
+
 });

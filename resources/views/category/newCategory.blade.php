@@ -1,4 +1,4 @@
- @extends('layouts.app')
+@extends('layouts.app')
 @section('content')
 <div class = "contant mt-2">
     <div class="card ">
@@ -6,7 +6,7 @@
        <div class="col-md-12 text-center my-auto">     
          <div class="card-body py-1">
              <a href="viewbook"class="btn btn-primary float-right">Back</a> 
-             <h3>Create New Book.</h3>         
+             <h3>Registration Page.</h3>         
            </div> 
         </div>
     </div> 
@@ -21,10 +21,17 @@
                         {!! Form::label('book_name', 'Book Name:', ['class'=>'col-md-1 col-form-label text-md-right custom_required']) !!}
                         <div class="col-lg-8">
                             {!! Form::text('book_name', @$book_name   , ['class' => 'form-control', 'required', 'placeholder' => 'Book Name', 'pattern'=> '^[a-z A-Z0-9_.-]*$']) !!}
-                            <div class="invalid-feedback">Please Ente  Book Name.</div>
+                            <div class="invalid-feedback">Please Enter Book Name.</div>
+                                @if($errors->has('employee_name'))
+                                    <span class="text-danger">
+                                        <li>Oops!  {{$errors->first('employee_name')}}</li>
+                                    </span>
+                                @endif 
                         </div>                        
-                    </div>      
-                                                    
+                    </div>     
+               
+                 
+                                                        
                     <!-- Submit Button -->
                     <div class="form-group">
                         <div class="col-lg-8 col-lg-offset-2">

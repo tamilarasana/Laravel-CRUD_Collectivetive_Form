@@ -72,9 +72,12 @@ class AuthController extends Controller
             'email' => 'email|required',
             'password' => 'required'
         ]);
+        $credentials = $request->except(['_token']);
+        //  $credentials['status'] =1;   
+          
 
 
-        if (!auth()->attempt($validator)) {
+        if (!auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorised'], 401);
         } else {
             $success['token'] = auth()->user()->createToken('authToken')->accessToken;
@@ -82,11 +85,21 @@ class AuthController extends Controller
             return response()->json(['success' => $success])->setStatusCode(Response::HTTP_ACCEPTED);
         }
     }
+    /**
+     * Get the needed authorization credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request  $request   
+     * @return array
+     */
+    protected function credentials(Request $request)
+    {
+        return $request->only($this->username(), 'password');
+    }
 
     /**
      * @OA\Post(
      ** path="/user-register",
-     *   tags={"Register"},
+     *   tags={"Login"},
      *   summary="Register",
      *   operationId="register",
      *

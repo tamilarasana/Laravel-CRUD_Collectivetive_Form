@@ -58,7 +58,7 @@
 										<a class="btn btn-success" data-toggle="modal" onClick="editemployee({{$employees->id}})"  data-target="#employeeEditModel">Edit</a>
 										<a class="btn btn-danger" href="{{route('employee.deleteRec',$employees->id)}}"><i class="fa fa-trash"></a></i>
 									</td>
-								</tr>
+								</tr>	 	 	
 							@endforeach
 						@endif    
 					</tbody>           

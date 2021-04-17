@@ -1,4 +1,4 @@
- @extends('layouts.app')
+@extends('layouts.app')
 @section('content')
 <div class = "contant mt-2">
     <div class="card ">
@@ -6,22 +6,28 @@
        <div class="col-md-12 text-center my-auto">     
          <div class="card-body py-1">
              <a href="viewbook"class="btn btn-primary float-right">Back</a> 
-             <h3>Create New Book.</h3>         
+             <h3>Update Page.</h3>         
            </div> 
         </div>
     </div> 
     <div class= "row">
         <div class= "col-3 col-md-12">           
             <div class="well"> <br>
-                {!! Form::open(['route' => 'storeBook', 'id'=>'form','class' => 'needs-validation', 'novalidate', 'enctype' => 'multipart/form-data']) !!}           
+                {!! Form::open([ 'method'=> 'PATCH','route' => ['category.update',$category->id],'class' => 'needs-validation', 'novalidate']) !!} 
+                <input type="hidden" name="id" value="{{$category->id}}"/>          
                 <fieldset> 
                     
                     <!-- Employee ID -->
                     <div class="form-group row">
-                        {!! Form::label('book_name', 'Book Name:', ['class'=>'col-md-1 col-form-label text-md-right custom_required']) !!}
+                        {!! Form::label('name', 'Name:', ['class'=>'col-md-1 col-form-label text-md-right custom_required']) !!}
                         <div class="col-lg-8">
-                            {!! Form::text('book_name', @$book_name   , ['class' => 'form-control', 'required', 'placeholder' => 'Book Name', 'pattern'=> '^[a-z A-Z0-9_.-]*$']) !!}
-                            <div class="invalid-feedback">Please Ente  Book Name.</div>
+                            {!! Form::text('name', $category->name , ['class' => 'form-control', 'required', 'placeholder' => 'Book Name', 'pattern'=> '^[a-z A-Z0-9_.-]*$']) !!}
+                            <div class="invalid-feedback">Please Ente  Name.</div>
+                            @if($errors->has('name'))
+                            <span class="text-danger">
+                                <li>Oops! {{$errors->first('name')}}</li>
+                            </span>
+                        @endif
                         </div>                        
                     </div>      
                                                     

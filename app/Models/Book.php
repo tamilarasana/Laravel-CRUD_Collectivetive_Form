@@ -23,10 +23,7 @@ class Book extends Model
         return $data;
     }
     public function updatebook($data){
-        //dd($data);
     $book= Book::findorFail($data["id"]);
-    
-                //  dd($data);
         $book->update($data);
         return $data;
     }

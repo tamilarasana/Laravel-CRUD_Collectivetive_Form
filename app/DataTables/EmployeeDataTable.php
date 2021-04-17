@@ -115,14 +115,6 @@ class EmployeeDataTable extends DataTable
                 'data' => 'empolyee_image',
                 'orderable' => true,
             ],
-            
-       
-               
-              
-          
-              
-        
-           
              
             // Column::computed('action')
             //       ->exportable(false)

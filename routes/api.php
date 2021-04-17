@@ -20,7 +20,8 @@ Route::group(['prefix' => 'v1'], function () {
      Route::post('user-register', 'Api\V1\AuthController@register');
     Route::group(['namespace' => 'Api\V1'], function () { 
         Route::apiResource('department', 'DepartmentController'); 
-        Route::apiResource('checklist-category', 'ChecklistCategoryController');   
+        Route::apiResource('checklist-category', 'ChecklistCategoryController');  
+        Route::apiResource('category-list', 'CategoryListController'); 
        
     });
  
