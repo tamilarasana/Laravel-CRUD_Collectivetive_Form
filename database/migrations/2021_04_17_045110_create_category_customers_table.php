@@ -16,17 +16,17 @@ class CreateCategoryCustomersTable extends Migration
         Schema::create('category_customers', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('project_category_id')->nullable();
-            $table->string(' project_name', 50)->nullable();
-            $table->text(' description', 50)->nullable();
-            $table->text(' feature', 50)->nullable();
-            $table->integer(' available_qty')->nullable();
-            $table->string(' project_number', 15)->nullable();
-            $table->string(' price', 20)->nullable();
-            $table->string(' discount')->nullable();
-            $table->string(' sales_price')->nullable();
-            $table->date(' start_date',false, false)->nullable()->index();
-            $table->date(' end_date', false, false)->nullable()->index();
-            $table->string(' images');
+            $table->string('project_name', 50)->nullable();
+            $table->text('description', 50)->nullable();
+            $table->text('feature', 50)->nullable();
+            $table->integer('available_qty')->nullable();
+            $table->string('project_number',15)->nullable();
+            $table->string('price',15)->nullable();
+            $table->string('discount')->nullable();
+            $table->string('sales_price')->nullable();
+            $table->date('start_date',false, false)->nullable()->index();
+            $table->date('end_date', false, false)->nullable()->index();
+            $table->string('images');
             $table->tinyInteger('status')->nullable();
             $table->softDeletes();
             $table->timestamps();

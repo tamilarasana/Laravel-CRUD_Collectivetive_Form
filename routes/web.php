@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function () {    
@@ -40,9 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('category', CategoryController::class);
     Route::get('/delete/category/{id}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('category.delete');
 
-    // Route::GET('/category', [App\Http\Controllers\CategoryController::class, 'categorylist'])->name('category');
-    // Route::POST('/category-store', [App\Http\Controllers\CategoryController::class, 'categoryStore'])->name('category-store');
-    // Route::get('/delete/category/{id}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('categorydelete');
-    // Route::GET('/categorys/{id}', [App\Http\Controllers\CategoryController::class, 'getCategoryBYid']);
+    Route::resource('customercategory', CustomerCategoryController::class);
 
+    
 });
