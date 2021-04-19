@@ -21,7 +21,7 @@
         <p id="msg">{{ $message }}</p>
     </div>
     @endif
-    <table class="table table-bordered">
+    <table id="categoryTable" class="table table-striped table-bordered" >
         <tr>
             <th>ID</th>
             <th>Project Name</th>
@@ -39,7 +39,7 @@
             <th width="280px">Action</th>
         </tr>
 
-        @foreach ($customers as $customer)
+        @foreach ($customers  as $customer)
             <tr id="customer_id_{{ $customer->id }}">
                 <td>{{ $customer->id }}</td>
                 <td>{{ $customer->project_name }}</td>
@@ -52,7 +52,7 @@
                 <td>{{ $customer->sales_price }}</td>
                 <td>{{ $customer->start_date }}</td>
                 <td>{{ $customer->end_date }}</td>
-                <td>{{ $customer->images }}</td>
+                <td><img src="{{ asset('storage/images/'.$customer->images)}}" width="100"/></td>
                 <td>
                     <form action="{{ route('customercategory.destroy',$customer->id) }}" method="POST">
                         {{-- <a class="btn btn-info" id="show-customer" data-toggle="modal" data-id="{{ $customer->id }}" >Show</a> --}}
@@ -65,7 +65,7 @@
         @endforeach 
 
     </table>
-    {!! $customers->links() !!}
+   
     <!-- Add and Edit customer modal -->
     <div class="modal fade" id="crud-modal" aria-hidden="true" >
         <div class="modal-dialog">
@@ -74,7 +74,7 @@
                     <h4 class="modal-title" id="customerCrudModal"></h4>
                 </div>
                 <div class="modal-body">
-                   <form name="custForm" action="{{ route('customercategory.store') }}" method="POST">
+                    {!! Form::open(['route' => 'customercategory.store','name'=>'custForm', 'id'=>'form','class' => 'needs-validation', 'novalidate', 'enctype' => 'multipart/form-data']) !!}     
                          <input type="hidden" name="cust_id" id="cust_id" >
                          @csrf
                     <div class="row">
@@ -82,6 +82,7 @@
                             <div class="form-group">
                                 <strong>Project ID:</strong>
                                 <input type="text" name="project_category_id" id="project_category_id" class="form-control" placeholder="Project Name" onchange="validate()" >
+                                <div class="invalid-feedback">Please enter Employee ID.</div>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -147,7 +148,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Images:</strong>
-                                <input type="text" name="images" id="images" class="form-control" placeholder="Images" onchange="validate()" onkeypress="validate()">
+                                <input type="file"  name="images" id="images" class="form-control" placeholder="Images" onchange="validate()" onkeypress="validate()">
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -161,45 +162,10 @@
                             <a href="" class="btn btn-danger">Cancel</a>
                         </div>
                     </div>
-                    </form>
+                    {!! Form::close()  !!} 
                 </div>
             </div>
         </div>
     </div>
-    <!-- Show customer modal -->
-    <div class="modal fade" id="crud-modal-show" aria-hidden="true" >
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                     <h4 class="modal-title" id="customerCrudModal-show"></h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-xs-2 col-sm-2 col-md-2"></div>
-                        <div class="col-xs-10 col-sm-10 col-md-10 ">
-                            @if(isset($customer->name))
-                            <table>
-                                <tr><td><strong>Name:</strong></td><td>{{$customer->name}}</td></tr>
-                                <tr><td><strong>Email:</strong></td><td>{{$customer->email}}</td></tr>
-                                <tr><td><strong>Address:</strong></td><td>{{$customer->address}}</td></tr>
-                                <tr><td colspan="2" style="text-align: right "><a href="{{ route('customers.index') }}" class="btn btn-danger">OK</a> </td></tr>
-                            </table>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 @endsection
-<script>
-error=false
-
-// function validate()
-// {
-// 	if(document.custForm.name.value !='' && document.custForm.email.value !='' && document.custForm.address.value !='')
-// 	    document.custForm.btnsave.disabled=false
-// 	else
-// 		document.custForm.btnsave.disabled=true
-// }
-</script>

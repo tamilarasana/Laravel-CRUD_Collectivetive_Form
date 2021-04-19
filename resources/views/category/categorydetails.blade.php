@@ -23,7 +23,7 @@
                 <br/>                     
                  <div class="col-md-12">
                      <h2 align="center">Category </h2>                                                
-                        <table id="categoryTable" class="table table-hover table-striped">                        
+                        <table id="categoryTable" class="table table-hover ">                        
                             <thead>
                                 <tr>
                                     <th>Id</th>

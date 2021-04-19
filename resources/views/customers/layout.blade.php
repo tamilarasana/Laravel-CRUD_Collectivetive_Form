@@ -48,8 +48,6 @@
                 $('#images').val(data.images);
                 $('#status').val(data.status);
 
-
-
             })
         });
         /* Show customer */

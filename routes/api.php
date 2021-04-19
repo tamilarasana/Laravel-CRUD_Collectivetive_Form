@@ -22,6 +22,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::apiResource('department', 'DepartmentController'); 
         Route::apiResource('checklist-category', 'ChecklistCategoryController');  
         Route::apiResource('category-list', 'CategoryListController'); 
+        Route::apiResource('project', 'ProjectController');
        
     });
  

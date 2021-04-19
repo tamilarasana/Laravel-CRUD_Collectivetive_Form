@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\CustomerCategoryModel;
+use App\Models\ProjectModel;
 use Redirect,Response;
 
 class CustomerCategoryController extends Controller
 {
     private $customerCategory;
 
-    public function __construct(CustomerCategoryModel  $customerCategory){ 
+    public function __construct(ProjectModel  $customerCategory){ 
         $this->customerCategory = $customerCategory;
     }
     /**
@@ -20,8 +20,12 @@ class CustomerCategoryController extends Controller
      */
     public function index() 
     {
-        $customers  = CustomerCategoryModel::first()->paginate(4);
-		return view('customers.index',compact('customers'))->with('i', (request()->input('page', 1) - 1) * 4);
+
+        $customers  = ProjectModel::get();
+        
+        // first()->paginate(4);
+		return view('customers.index',compact('customers'));
+        // ->with('i', (request()->input('page', 1) - 1) * 4);
 		// return view('customers.index');
     }
 
@@ -43,8 +47,8 @@ class CustomerCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $this->customerCategory->createcustomerCategory($request->except('_token'));  
-        return view('customers.index')->with('success');
+        $data = $this->customerCategory->createOrUpdatecustomerCategory($request);  
+        return redirect()->route('customercategory.index')->with('success');
         //  return redirect('viewbook');   
     }
 
@@ -68,7 +72,7 @@ class CustomerCategoryController extends Controller
     public function edit($id)
     {
         $where = array('id' => $id);
-		$customer = CustomerCategoryModel::where($where)->first();
+		$customer = ProjectModel::where($where)->first();
 		return Response::json($customer);
     }
 
@@ -81,7 +85,10 @@ class CustomerCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        // $data = $this->customerCategory->createOrUpdatecustomerCategory($request, $id);  
+        // return redirect()->route('customercategory.index')->with('success');         
+      
     }
 
     /**
@@ -92,7 +99,15 @@ class CustomerCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $cust = CustomerCategoryModel::where('id',$id)->delete();
-		return Response::json($cust);
+        // $cust = CustomerCategoryModel::where('id',$id)->delete();
+		// return Response::json($cust);
+        $cust = ProjectModel::find($id);
+         $deleteable_img  = $cust->images;
+        //   dd($deleteable_img); 
+         if(!empty($deleteable_img)){
+         unlink(storage_path($deleteable_img));
+          $cust -> delete();
+		 return Response::json($cust); 
+         }
     }
 }
