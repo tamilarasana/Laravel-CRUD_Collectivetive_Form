@@ -81,7 +81,7 @@ class ChecklistCategoryController extends Controller
  *                     property="status",
  *                     type="integer"
  *                 ),
- *                 example={ "name": "Jessica Smith", "status" : "1"}
+ *                 
  *             )
  *         )
  *     ),
@@ -212,7 +212,7 @@ class ChecklistCategoryController extends Controller
  *                     property="status",
  *                     type="integer"
  *                 ),
- *                 example={ "name": "Jessica Smith", "status" : "1"}
+ *               
  *             )
  *         )
  *     ),

@@ -86,8 +86,8 @@ class CustomerCategoryController extends Controller
     public function update(Request $request, $id)
     {
         
-        // $data = $this->customerCategory->createOrUpdatecustomerCategory($request, $id);  
-        // return redirect()->route('customercategory.index')->with('success');         
+         $data = $this->customerCategory->createOrUpdatecustomerCategory($request, $id);
+         return redirect()->route('customercategory.index')->with('success');         
       
     }
 
@@ -99,8 +99,6 @@ class CustomerCategoryController extends Controller
      */
     public function destroy($id)
     {
-        // $cust = CustomerCategoryModel::where('id',$id)->delete();
-		// return Response::json($cust);
         $cust = ProjectModel::find($id);
          $deleteable_img  = $cust->images;
         //   dd($deleteable_img); 

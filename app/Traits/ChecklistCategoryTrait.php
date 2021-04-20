@@ -27,7 +27,7 @@ trait ChecklistCategoryTrait {
  	}
 
  	public function getChecklistCategoryById($id) {
- 		return DepartmentModel::findOrFail($id);
+ 		return ChecklistCategoryModel::findOrFail($id);
  	}
  	public function deleteChecklistCategoryById($id) {
  		$category =  ChecklistCategoryModel::findOrFail($id);

@@ -6,7 +6,8 @@
 			<div class="col-md-12 text-center my-auto">     
 				<div class="card-body py-1">
 					<a href="viewbook"class="btn btn-success float-right">View Book</a> 
-					<a href="{!! route('employee.create')!!}"class="btn btn-primary float-right  mr-1">New</a> 
+					<a href="{!! route('employee.create')!!}"class="btn btn-primary float-right  mr-1">New</a>
+					<a href="{!! route('category.index')!!}"class="btn btn-info float-right  mr-1">Category</a> 
 					<h3>Employee Details</h3>         
 				</div> 
 			</div>

@@ -23,21 +23,22 @@ class ProjectRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->method() == 'PUT' ?  \Request::segment(4) : 'NULL';
+        $id = $this->method() == 'PUT' ||  $this->method() == 'PATCH' ?  \Request::segment(4) : 'NULL';
+
+        // $id = $this->method() == 'PUT' ?  \Request::segment(4) : 'NULL';
         return [
             'project_category_id'     => 'required',
-            'project_name'     => 'required',
-            'description'     => 'required',
-            'feature'         =>'required',
-            'available_qty'   => 'required',
-            'project_number'  =>'required',
-            'price'           => 'required',
-            'sales_price'     =>'required',
-            'start_date'      =>  'required',
-            'end_date'        =>  'required',
-            'images'          => 'required',
-            // 'images'          => 'required|image|mimes:jpg,png,gif|max:2048',
-            'status'          =>'required',
+            'project_name'            => 'required|unique:project_models,project_name,'.$id.',id,deleted_at,NULL|alpha_num|min:3|max:35',
+            'description'             => 'required',
+            'feature'                 => 'required',
+            'available_qty'           => 'required|numeric',
+            'project_number'          => 'required|alpha_num',
+            'price'                   => 'required|alpha_num',
+            'sales_price'             => 'required|alpha_num',
+            'start_date'              => 'required|date',
+            'end_date'                => 'required|date',
+            'images'                  => 'required|image|mimes:jpg,png,gif|max:2048',
+            'status'                  => 'required',
 
 
 

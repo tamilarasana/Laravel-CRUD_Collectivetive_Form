@@ -18,7 +18,8 @@
                 <div class="col-lg-12 margin-tb">
                         <div class="pull-left">
                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> New </button>
-                        </div>
+                             {{-- <a href="{!! route('employee.create')!!}"class="btn btn-primary float-right  mr-1">New</a> --}}
+                            </div>
                 </div>
                 <br/>                     
                  <div class="col-md-12">

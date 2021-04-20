@@ -80,7 +80,7 @@ class DepartmentController extends Controller
      *                     property="status",
      *                     type="integer"
      *                 ),
-     *                 example={ "name": "Jessica Smith", "status" : "1"}
+     *                 
      *             )
      *         )
      *     ),
@@ -211,7 +211,7 @@ class DepartmentController extends Controller
  *                     property="status",
  *                     type="integer"
  *                 ),
- *                 example={ "name": "Jessica Smith", "status" : "1"}
+ *                  
  *             )
  *         )
  *     ),

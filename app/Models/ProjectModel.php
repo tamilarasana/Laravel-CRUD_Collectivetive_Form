@@ -29,11 +29,10 @@ class ProjectModel extends Model implements Auditable
        
         $data = $request->except('_token');        
         $customer_image = '';
-        if (@$request->all()['images'] && !empty($request->all()['images'])) {
+        if (@$request->all()['images']) {
             $imageName = time().'.'.$request->images->extension();  
             $request->images->move(storage_path('images'), $imageName);
             $customer_image = 'images'.'/'.$imageName;
-            // dd($customer_image);
         }
         if($id){
             $customer_data = ProjectModel::findorFail($id);
@@ -45,7 +44,7 @@ class ProjectModel extends Model implements Auditable
                 } 
                 $data['customer_image'] = $customer_image;
             }
-            $customer_data->update($data);
+              $customer_data->update($data);
         }else {
 
             $data['images'] = $customer_image;
@@ -55,5 +54,6 @@ class ProjectModel extends Model implements Auditable
        }
         return $customer_data->id;  
     }
+    
     
 }

@@ -23,8 +23,10 @@ class CategorydataRequest  extends FormRequest
      */
     public function rules()
     {
+        $id = $this->method() == 'PUT' ||  $this->method() == 'PATCH' ?  \Request::segment(2) : 'NULL';
+
         return [
-            'name'       => 'required|unique:project_category,name|alpha_num|min:6|max:10',
+            'name'       => 'required|unique:project_category,name,'.$id.',id,deleted_at,NULL|alpha_num|min:3|max:15',
            
         ];
     }

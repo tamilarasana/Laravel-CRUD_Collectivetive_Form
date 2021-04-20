@@ -78,11 +78,10 @@
                          <input type="hidden" name="cust_id" id="cust_id" >
                          @csrf
                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12">                            
                                 <strong>Project ID:</strong>
-                                <input type="text" name="project_category_id" id="project_category_id" class="form-control" placeholder="Project Name" onchange="validate()" >
-                                <div class="invalid-feedback">Please enter Employee ID.</div>
+                            {!! Form::text('project_category_id', @$project_category_id , ['id'=>"project_category_id" ,'class' => 'form-control', 'required',  'onchange'=>"validate()",'placeholder' => 'Name', 'pattern'=> '^[a-z A-Z0-9_.-]*$']) !!}
+                                <div class="invalid-feedback">Please enter Project ID.</div>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -112,7 +111,8 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Project Number:</strong>
-                                <input type="text" name="project_number" id="project_number" class="form-control" placeholder="Project Number" onchange="validate()" onkeypress="validate()">
+                                <input type="text" name="project_number" id="project_number" required class="form-control" placeholder="Project Number" onchange="validate()" onkeypress="validate()">
+                                <div class="invalid-feedback">Please enter Name.</div>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -167,5 +167,22 @@
             </div>
         </div>
     </div>
+    <script>
+        (function() {
+        'use strict';
+          window.addEventListener('load', function() {               
+            var forms = document.getElementsByClassName('needs-validation');  
+            var validation = Array.prototype.filter.call(forms, function(form) {
+              form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  }
+                form.classList.add('was-validated');
+              }, false);
+            });
+          }, false);
+        })();
+      </script>  
     
-@endsection
+{{-- @endsection --}}
