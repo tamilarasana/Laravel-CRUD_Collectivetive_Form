@@ -1,63 +1,48 @@
 <!DOCTYPE html>
-
 <html>
 <head>
-    <title>Category</title>
+    <title>Project</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="{!! URL('/vendor/jquery-validate/jquery.validate.min.js') !!}"></script>
+    <script src="{!! URL('/vendor/jquery-validate/additional-methods.min.js') !!}"></script>
+    @if(app()->getLocale() != 'en'))
+    <script src="{!! URL('/vendor/jquery-validate/localization/messages_'.app()->getLocale().'.min.js') !!}"></script>
+    @endif
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+    rel = "stylesheet">
+ <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         @yield('content')
     </div>
 </body>
 <script>
     $(document).ready(function () {
-
-        /* When click New customer button */
-        $('#new-customer').click(function () {
-             $('#btn-save').val("create-customer");
-             $('#customer').trigger("reset");
-             $('#customerCrudModal').html("Add New Customer");
-             $('#crud-modal').modal('show');
-        });
-
-        /* Edit customer */
-        $('body').on('click', '#edit-customer', function () {
-             var customer_id = $(this).data('id');
-             $.get('customercategory/'+customer_id+'/edit', function (data) {
-                $('#customerCrudModal').html("Edit customer");
-                $('#btn-update').val("Update");
-                $('#btn-save').prop('disabled',false);
-                $('#crud-modal').modal('show');
-                $('#cust_id').val(data.id);
-                $('#project_category_id').val(data.project_category_id);
-                $('#project_name').val(data.project_name);
-                $('#description').val(data.description);
-                $('#feature').val(data.feature);
-                $('#available_qty').val(data.available_qty);
-                $('#project_number').val(data.project_number);
-                $('#price').val(data.price);
-                $('#discount').val(data.discount);
-                $('#sales_price').val(data.sales_price);
-                $('#start_date').val(data.start_date);
-                $('#end_date').val(data.end_date);
-                $('#images').val(data.images);
-                $('#status').val(data.status);
-
-            })
-        });
-        /* Show customer */
-        $('body').on('click', '#show-customer', function () {
-             $('#customerCrudModal-show').html("Customer Details");
-             $('#crud-modal-show').modal('show');
+    
+        $("body").on("click", ".create_or_update_project", function(e) {
+            var action = $(this).attr('data-action');
+            var $inventSubmodal = $("#createOrUpdateProject");
+            if(typeof action != 'undefined'){
+                $inventSubmodal.load( action, function(response) {
+                    $inventSubmodal.modal('show');
+                    $("#project_form").validate();
+                    $( "#start_date,#end_date" ).datepicker({
+               dateFormat:"dd.mm-yy",
+               firstDay: 1
+            });
+                });
+            }
+           
         });
 
         /* Delete customer */
-        $('body').on('click', '#delete-customer', function () {
+        $('body').on('click', '.delete-customer', function () {
             var customer_id = $(this).data("id");
             var token = $("meta[name='csrf-token']").attr("content");
             confirm("Are You sure want to delete !");

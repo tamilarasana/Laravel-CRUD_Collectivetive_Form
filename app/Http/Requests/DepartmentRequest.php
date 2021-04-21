@@ -23,6 +23,7 @@ class DepartmentRequest extends FormRequest
      */
     public function rules()
     {
+        
         $id = $this->method() == 'PUT' ?  \Request::segment(4) : 'NULL';
         return [
             'name'     => 'required|max:35|unique:checklist_category,name,'.$id.',id,deleted_at,NULL',

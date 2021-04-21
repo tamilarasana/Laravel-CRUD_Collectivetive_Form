@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ProjectRequest;
 use App\Models\ProjectModel;
 use Redirect,Response;
+use App\Models\CategoryModel;
+
 
 class CustomerCategoryController extends Controller
 {
@@ -20,9 +23,8 @@ class CustomerCategoryController extends Controller
      */
     public function index() 
     {
-
-        $customers  = ProjectModel::get();
-        
+       
+        $customers  = ProjectModel::get();        
         // first()->paginate(4);
 		return view('customers.index',compact('customers'));
         // ->with('i', (request()->input('page', 1) - 1) * 4);
@@ -36,7 +38,8 @@ class CustomerCategoryController extends Controller
      */
     public function create()
     {
-        //
+        $data['categories'] = CategoryModel::orderby('name')->pluck('name', 'id')->toArray();
+        return view('customers.create', $data);
     }
 
     /**
@@ -47,6 +50,7 @@ class CustomerCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $data = $this->customerCategory->createOrUpdatecustomerCategory($request);  
         return redirect()->route('customercategory.index')->with('success');
         //  return redirect('viewbook');   
@@ -71,9 +75,10 @@ class CustomerCategoryController extends Controller
      */
     public function edit($id)
     {
-        $where = array('id' => $id);
-		$customer = ProjectModel::where($where)->first();
-		return Response::json($customer);
+        $data['project'] = ProjectModel::findOrFail($id);
+        $data['categories'] = CategoryModel::orderby('name')->pluck('name', 'id')->toArray();
+
+        return view('customers.edit', $data);
     }
 
     /**
@@ -83,7 +88,7 @@ class CustomerCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProjectRequest $request, $id)
     {
         
          $data = $this->customerCategory->createOrUpdatecustomerCategory($request, $id);
@@ -102,10 +107,11 @@ class CustomerCategoryController extends Controller
         $cust = ProjectModel::find($id);
          $deleteable_img  = $cust->images;
         //   dd($deleteable_img); 
-         if(!empty($deleteable_img)){
+         if(!empty($deleteable_img) && file_exists($deleteable_img)){
          unlink(storage_path($deleteable_img));
-          $cust -> delete();
-		 return Response::json($cust); 
+         
          }
+         $cust -> delete();
+		 return Response::json($cust); 
     }
 }

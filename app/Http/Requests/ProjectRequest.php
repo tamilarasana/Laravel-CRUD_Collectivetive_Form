@@ -23,11 +23,13 @@ class ProjectRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->method() == 'PUT' ||  $this->method() == 'PATCH' ?  \Request::segment(4) : 'NULL';
+        $segment = \Request::segment(4) ? \Request::segment(4) : \Request::segment(2);
+        $id = $this->method() == 'PUT' ||  $this->method() == 'PATCH' ?  $segment : 'NULL';
+
 
         // $id = $this->method() == 'PUT' ?  \Request::segment(4) : 'NULL';
         return [
-            'project_category_id'     => 'required',
+            'project_category_id'     => 'required|numeric',
             'project_name'            => 'required|unique:project_models,project_name,'.$id.',id,deleted_at,NULL|alpha_num|min:3|max:35',
             'description'             => 'required',
             'feature'                 => 'required',
@@ -37,7 +39,7 @@ class ProjectRequest extends FormRequest
             'sales_price'             => 'required|alpha_num',
             'start_date'              => 'required|date',
             'end_date'                => 'required|date',
-            'images'                  => 'required|image|mimes:jpg,png,gif|max:2048',
+            'images'                  => 'nullable|image|mimes:jpg,png,gif|max:2048',
             'status'                  => 'required',
 
 

@@ -77,7 +77,7 @@ class ProjectController extends Controller
      *             @OA\Schema(
      *                 @OA\Property(
      *                     property="project_category_id",
-     *                     type="tinyInteger"
+     *                     type="integer"
      *                 ),
      *            
     *                 @OA\Property(
@@ -266,7 +266,7 @@ class ProjectController extends Controller
      *             @OA\Schema(
      *                 @OA\Property(
      *                     property="project_category_id",
-     *                     type="tinyInteger"
+     *                     type="integer"
      *                 ),
      *            
     *                 @OA\Property(

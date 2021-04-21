@@ -43,6 +43,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/delete/category/{id}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('category.delete');
 
     Route::resource('customercategory', CustomerCategoryController::class);
-
+    //  Route::get('/customercategory/{id}/edit/', [App\Http\Controllers\CustomerCategoryController::class, 'edit']);
+    // Route::resource('/customercategory', 'CustomerCategoryController',
+    // ['names' => [
+    //     'index' => 'customercategory.index',
+    //     'create' => 'customercategory.create',
+    //     'store' => 'customercategory.store',
+    //     'edit' => 'customercategory.edit',
+    //     'update' => 'customercategory.update',
+    //     'destroy' => 'customercategory.destroy'
+    // ]]);
     
 });

@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12" style="text-align: center">
             <div >
-                <h2> Category List</h2>
+                <h2> Project List</h2>
             </div>
             <br/>
         </div>
@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right">
-                <a href="javascript:void(0)" class="btn btn-success mb-2" id="new-customer" data-toggle="modal">New Customer</a>
+                <a href="javascript:void(0)" class="btn btn-success mb-2 create_or_update_project" data-action="{!! route('customercategory.create') !!}" id="new-customer" data-toggle="modal">New Project</a>
             </div>
         </div>
     </div>
@@ -34,8 +34,7 @@
             <th>Sales Price</th>
             <th>Start Date</th>
             <th>End Date</th>
-            <th>Images</th>
-            {{-- <th>Status</th> --}}
+            <th>Status</th>
             <th width="280px">Action</th>
         </tr>
 
@@ -52,14 +51,16 @@
                 <td>{{ $customer->sales_price }}</td>
                 <td>{{ $customer->start_date }}</td>
                 <td>{{ $customer->end_date }}</td>
-                <td><img src="{{ asset('storage/images/'.$customer->images)}}" width="100"/></td>
+                @if($customer->status == 1)
+                   <td>Active</td>
+                @else
+                    <td>Deactive</td>
+                 @endif
+                
                 <td>
-                    <form action="{{ route('customercategory.destroy',$customer->id) }}" method="POST">
                         {{-- <a class="btn btn-info" id="show-customer" data-toggle="modal" data-id="{{ $customer->id }}" >Show</a> --}}
-                        <a href="javascript:void(0)" class="btn btn-success" id="edit-customer" data-toggle="modal" data-id="{{ $customer->id }}">Edit </a>
-                        <meta name="csrf-token" content="{{ csrf_token() }}">
-                        <a id="delete-customer" data-id="{{ $customer->id }}" class="btn btn-danger delete-user">Delete</a></td>
-                    </form>
+                        <a href="javascript:void(0)" class="btn btn-success create_or_update_project" id="edit-customer{!! $customer->id !!}"  data-id="{{ $customer->id }}" data-action="{!! route('customercategory.edit', [$customer->id]) !!}" >Edit </a>
+                        <a id="delete-customer{!!  $customer->id !!}" data-id="{{ $customer->id }}" class="btn btn-danger delete-user delete-customer">Delete</a></td>
                     </td>
             </tr>
         @endforeach 
@@ -67,122 +68,9 @@
     </table>
    
     <!-- Add and Edit customer modal -->
-    <div class="modal fade" id="crud-modal" aria-hidden="true" >
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="customerCrudModal"></h4>
-                </div>
-                <div class="modal-body">
-                    {!! Form::open(['route' => 'customercategory.store','name'=>'custForm', 'id'=>'form','class' => 'needs-validation', 'novalidate', 'enctype' => 'multipart/form-data']) !!}     
-                         <input type="hidden" name="cust_id" id="cust_id" >
-                         @csrf
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12">                            
-                                <strong>Project ID:</strong>
-                            {!! Form::text('project_category_id', @$project_category_id , ['id'=>"project_category_id" ,'class' => 'form-control', 'required',  'onchange'=>"validate()",'placeholder' => 'Name', 'pattern'=> '^[a-z A-Z0-9_.-]*$']) !!}
-                                <div class="invalid-feedback">Please enter Project ID.</div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Project Name:</strong>
-                                <input type="text" name="project_name" id="project_name" class="form-control" placeholder="Project Name" onchange="validate()" >
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Description:</strong>
-                                <input type="textarea" name="description" id="description" class="form-control" placeholder="Description" onchange="validate()">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Feature:</strong>
-                                <input type="textarea" name="feature" id="feature" class="form-control" placeholder="feature" onchange="validate()" onkeypress="validate()">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Available Quantaty:</strong>
-                                <input type="text" name="available_qty" id="available_qty" class="form-control" placeholder="Available Quantaty" onchange="validate()" onkeypress="validate()">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Project Number:</strong>
-                                <input type="text" name="project_number" id="project_number" required class="form-control" placeholder="Project Number" onchange="validate()" onkeypress="validate()">
-                                <div class="invalid-feedback">Please enter Name.</div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Price:</strong>
-                                <input type="text" name="price" id="price" class="form-control" placeholder="Price" onchange="validate()" onkeypress="validate()">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Discount:</strong>
-                                <input type="text" name="discount" id="discount" class="form-control" placeholder="Discount" onchange="validate()" onkeypress="validate()">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Sales Price:</strong>
-                                <input type="text" name="sales_price" id="sales_price" class="form-control" placeholder="Sales Price" onchange="validate()" onkeypress="validate()">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Start Date:</strong>
-                                <input type="date" name="start_date" id="start_date" class="form-control" placeholder="Start Date" onchange="validate()" onkeypress="validate()">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>End Date:</strong>
-                                <input type="date" name="end_date" id="end_date" class="form-control" placeholder="End Date" onchange="validate()" onkeypress="validate()">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Images:</strong>
-                                <input type="file"  name="images" id="images" class="form-control" placeholder="Images" onchange="validate()" onkeypress="validate()">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Status:</strong>
-                                <input type="text" name="status" id="status" class="form-control" placeholder="Status" onchange="validate()" onkeypress="validate()">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                            <button type="submit" id="btn-save" name="btnsave" class="btn btn-primary" >Submit</button>
-                            <a href="" class="btn btn-danger">Cancel</a>
-                        </div>
-                    </div>
-                    {!! Form::close()  !!} 
-                </div>
-            </div>
-        </div>
+    <div class="modal fade" id="createOrUpdateProject" aria-hidden="true" >
+        
     </div>
-    <script>
-        (function() {
-        'use strict';
-          window.addEventListener('load', function() {               
-            var forms = document.getElementsByClassName('needs-validation');  
-            var validation = Array.prototype.filter.call(forms, function(form) {
-              form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                  event.preventDefault();
-                  event.stopPropagation();
-                  }
-                form.classList.add('was-validated');
-              }, false);
-            });
-          }, false);
-        })();
-      </script>  
+   
     
-{{-- @endsection --}}
+@endsection

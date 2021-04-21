@@ -104,7 +104,7 @@
                     <div class="form-group row">
                         {!! Form::label('department', 'Department:', ['class'=>'col-md-1 col-form-label text-md-right custom_required'] )  !!}
                         <div class="col-lg-8">
-                            {!!  Form::select('department', [ '' => 'Select',' fullstack developer' => 'FullStack Developer', 'web developer' => 'Web Developer', 'front end developer' => 'Front end developer', 'tester' => 'Tester'],$employee->department, ['class' => 'form-control','required',]) !!}
+                            {!!  Form::select('department', [ '' => 'Select',' fullstack developer' => 'FullStack Developer', 'web developer' => 'Web Developer', 'front end developer' => 'Front end developer', 'tester' => 'Tester'],@$employees->department,['class' => 'form-control','required',]) !!}
                               <div class="invalid-feedback">Please Select Your Department.</div>
                                 @if($errors->has('department'))
                                     <span class="text-danger">

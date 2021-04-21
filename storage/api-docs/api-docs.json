@@ -421,11 +421,7 @@
                                         "type": "integer"
                                     }
                                 },
-                                "type": "object",
-                                "example": {
-                                    "name": "Jessica Smith",
-                                    "status": "1"
-                                }
+                                "type": "object"
                             }
                         }
                     }
@@ -522,11 +518,7 @@
                                         "type": "integer"
                                     }
                                 },
-                                "type": "object",
-                                "example": {
-                                    "name": "Jessica Smith",
-                                    "status": "1"
-                                }
+                                "type": "object"
                             }
                         }
                     }
@@ -638,11 +630,7 @@
                                         "type": "integer"
                                     }
                                 },
-                                "type": "object",
-                                "example": {
-                                    "name": "Jessica Smith",
-                                    "status": "1"
-                                }
+                                "type": "object"
                             }
                         }
                     }
@@ -739,11 +727,7 @@
                                         "type": "integer"
                                     }
                                 },
-                                "type": "object",
-                                "example": {
-                                    "name": "Jessica Smith",
-                                    "status": "1"
-                                }
+                                "type": "object"
                             }
                         }
                     }
@@ -774,6 +758,294 @@
                     "Department"
                 ],
                 "summary": "Edit Department",
+                "operationId": "delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of category",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/project": {
+            "get": {
+                "tags": [
+                    "Project"
+                ],
+                "summary": "List all",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Project"
+                ],
+                "summary": "Store checklist category",
+                "operationId": "store",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "project_category_id": {
+                                        "type": "tinyInteger"
+                                    },
+                                    "project_name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "feature": {
+                                        "type": "string"
+                                    },
+                                    "available_qty": {
+                                        "type": "integer"
+                                    },
+                                    "project_number": {
+                                        "type": "string"
+                                    },
+                                    "price": {
+                                        "type": "string"
+                                    },
+                                    "discount": {
+                                        "type": "string"
+                                    },
+                                    "sales_price": {
+                                        "type": "string"
+                                    },
+                                    "start_date": {
+                                        "type": "date",
+                                        "format": "date",
+                                        "example": "yyyy-mm-dd"
+                                    },
+                                    "end_date": {
+                                        "description": "Datetime marker of verification status",
+                                        "type": "date",
+                                        "format": "date",
+                                        "example": "yyyy-mm-dd"
+                                    },
+                                    "images": {
+                                        "description": "file to upload",
+                                        "type": "file",
+                                        "format": "file"
+                                    },
+                                    "status": {
+                                        "type": "tinyInteger"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/project/{id}": {
+            "get": {
+                "tags": [
+                    "Project"
+                ],
+                "summary": "Edit Project",
+                "operationId": "edit",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of category",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Project"
+                ],
+                "summary": "Update Project",
+                "operationId": "put",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of category",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "project_category_id": {
+                                        "type": "integer"
+                                    },
+                                    "project_name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "feature": {
+                                        "type": "string"
+                                    },
+                                    "available_qty": {
+                                        "type": "integer"
+                                    },
+                                    "project_number": {
+                                        "type": "string"
+                                    },
+                                    "price": {
+                                        "type": "string"
+                                    },
+                                    "discount": {
+                                        "type": "string"
+                                    },
+                                    "sales_price": {
+                                        "type": "string"
+                                    },
+                                    "start_date": {
+                                        "type": "date",
+                                        "format": "date",
+                                        "example": "yyyy-mm-dd"
+                                    },
+                                    "end_date": {
+                                        "description": "Datetime marker of verification status",
+                                        "type": "date",
+                                        "format": "date",
+                                        "example": "yyyy-mm-dd"
+                                    },
+                                    "images": {
+                                        "description": "file to upload",
+                                        "type": "file",
+                                        "format": "file"
+                                    },
+                                    "status": {
+                                        "type": "tinyInteger"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Project"
+                ],
+                "summary": "Delete Project",
                 "operationId": "delete",
                 "parameters": [
                     {

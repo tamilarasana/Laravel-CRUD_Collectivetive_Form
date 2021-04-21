@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Contracts\Auditable;
+use Carbon\Carbon;
 
 class ProjectModel extends Model implements Auditable
 {
@@ -27,7 +28,8 @@ class ProjectModel extends Model implements Auditable
     public function createOrUpdatecustomerCategory($request,$id=false)
     {
        
-        $data = $request->except('_token');        
+        $data = $request->except('_token');  
+          
         $customer_image = '';
         if (@$request->all()['images']) {
             $imageName = time().'.'.$request->images->extension();  
@@ -53,6 +55,23 @@ class ProjectModel extends Model implements Auditable
         $customer_data = ProjectModel::create($data);
        }
         return $customer_data->id;  
+    }
+
+        public function getStartDateAttribute($value)
+    {
+         return Carbon::parse($value)->format('d.m.Y');
+    }
+    public function getEndDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d.m.Y');
+    }
+    public function setStartDateAttribute($value)
+    {
+       $this->attributes['start_date']  = Carbon::parse($value)->format('Y-m-d');
+    }
+    public function setEndDateAttribute($value)
+    {
+       $this->attributes['end_date'] = Carbon::parse($value)->format('Y-m-d');
     }
     
     

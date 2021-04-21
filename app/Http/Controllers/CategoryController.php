@@ -25,7 +25,7 @@ class CategoryController extends Controller
    public function store(CategorydataRequest $request){
        $this->validate($request,['name'=> 'required']);
    $data = $this->categoryObject->createCategory($request->except('_token')); 
-   return redirect('/category')->with('success', 'data saved');
+   return redirect('/category')->with('success', 'Category saved');
 //    return Redirect::route('category'); 
    }
 
