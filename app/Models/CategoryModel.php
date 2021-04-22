@@ -29,15 +29,22 @@ class CategoryModel extends Model implements Auditable
         return $catagory;
     }
 
-    public function createCategory($data)
+    public function createOrUpdatecategory($request, $id=false)
     { 
-        $data = CategoryModel::create($data);
-        return $data;
+        $request = $request->except('_token');
+        if($id){
+            
+            $category = CategoryModel::findorFail($id);
+            $category->update($request);
+        }else {                  
+        $category = CategoryModel::create($request);
+        }
+        return $category->id;
     }
 
-    public function updateCategory($data){
-    $category= CategoryModel::findorFail($data["id"]);
-        $category->update($data);
-        return $data;
-    }
+    // public function updateCategory($data){
+    // $category= CategoryModel::findorFail($data["id"]);
+    //     $category->update($data);
+    //     return $data;
+    // }
 }

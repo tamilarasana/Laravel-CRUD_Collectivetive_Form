@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Category 
     Route::resource('category', CategoryController::class);
-    Route::get('/delete/category/{id}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('category.delete');
+    Route::post('/category/delete/{id}', [App\Http\Controllers\CategoryController::class, 'destroy']);
 
     Route::resource('customercategory', CustomerCategoryController::class);
     //  Route::get('/customercategory/{id}/edit/', [App\Http\Controllers\CustomerCategoryController::class, 'edit']);

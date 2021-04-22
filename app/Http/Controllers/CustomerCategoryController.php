@@ -23,8 +23,9 @@ class CustomerCategoryController extends Controller
      */
     public function index() 
     {
-       
-        $customers  = ProjectModel::get();        
+    //    dd("in");
+        $customers  = ProjectModel::with('category');
+        dd($customers);        
         // first()->paginate(4);
 		return view('customers.index',compact('customers'));
         // ->with('i', (request()->input('page', 1) - 1) * 4);
@@ -77,7 +78,7 @@ class CustomerCategoryController extends Controller
     {
         $data['project'] = ProjectModel::findOrFail($id);
         $data['categories'] = CategoryModel::orderby('name')->pluck('name', 'id')->toArray();
-
+        
         return view('customers.edit', $data);
     }
 

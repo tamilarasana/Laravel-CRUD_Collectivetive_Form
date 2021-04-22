@@ -73,6 +73,10 @@ class ProjectModel extends Model implements Auditable
     {
        $this->attributes['end_date'] = Carbon::parse($value)->format('Y-m-d');
     }
+    public function category(){
+        return $this->belongsTo('App\Models\CategoryModel');
+    }
     
+
     
 }

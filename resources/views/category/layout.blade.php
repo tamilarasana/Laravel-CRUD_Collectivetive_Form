@@ -42,47 +42,29 @@
         });
 
         /* Delete customer */
-        $('body').on('click', '.delete-customer', function () {
-            var customer_id = $(this).data("id");
+        $('body').on('click', '.delete-category', function () {
+            var id= $(this).data("id");
             var token = $("meta[name='csrf-token']").attr("content");
-            confirm("Are You sure want to delete !");
+            if (confirm("Are You sure want to delete !")) {
         $.ajax({
-                 type: "DELETE",
-                     url: "http://127.0.0.1:8000/customercategory/"+customer_id,
+                 type: "POST",
+                     url: `/category/delete/${id}`,
                       data: {
-                           "id": customer_id,
+                           "id": id,
                            "_token": token,
                        },
+                       dataType:'json',
                         success: function (data) {
-                            $('#msg').html('Customer entry deleted successfully');
+                            $('#msg').html('Category deleted successfully');
                             $("#customer_id_" + customer_id).remove();
                         },
                         error: function (data) {
                             console.log('Error:', data);
                         }
                  });
+            }
              });
         });
-
-        function cal() {
-            var price = $("input[name='price']").val()
-            var discount = $("input[name='discount']").val()
-            var calcprice = (price - (price*discount/100)).toFixed(2);
-            document.getElementById('sales_price').value = calcprice
-        }
-       
-    //  var $price = $("input[name='price']"),
-    //     $discount = $("input[name='discount']"),
-    //     $total_cost = $("input[name='sales_price']"),
-
-    //     function calculateprice (){
-    //         alert('in')
-            // var discount = $(this).val();
-            // var price = $price.val();
-            // var calcprice = (price - (price*discount/100)).toFixed(2);
-            // total_cost.val(calcprice);
-        // }
-        
 
 </script>
 </html>
