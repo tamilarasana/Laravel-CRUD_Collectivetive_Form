@@ -38,7 +38,7 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         {!! Form::label('sales_price', 'Sales Price:' )  !!}
-        {!! Form::text('sales_price', @$project->sales_price, ['id' => 'sales_price', 'class' => 'form-control', 'required','placeholder' => 'Sales Price',  'pattern'=> '^[a-zA-Z0-9_.-]*$' ]) !!}
+        {!! Form::text('sales_price', @$project->sales_price, ['id' => 'sales_price', 'class' => 'form-control', 'required','placeholder' => 'Sales Price',  'pattern'=> '^[a-zA-Z0-9_.-]*$','disabled' ]) !!}
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         {!! Form::label('start_date', 'Start Date:' )  !!}
@@ -49,7 +49,7 @@
         {{-- @php
         print_r($project->end_date);
         @endphp --}}
-        {!! Form::text('end_date', @$project->end_date, ['class' => 'form-control', 'required','placeholder' => 'End Date',  'id'=> 'end_date' ]) !!}
+        {!! Form::text('end_date', @$project->end_date, ['class' => 'form-control', 'required','placeholder' => 'End Date',  'id'=> 'end_date', ]) !!}
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">

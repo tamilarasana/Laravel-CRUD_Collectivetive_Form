@@ -25,11 +25,10 @@ class ProjectModel extends Model implements Auditable
     }
      
 
-    public function createOrUpdatecustomerCategory($request,$id=false)
+    public function createOrUpdateProject($request,$id=false)
     {
-       
+      
         $data = $request->except('_token');  
-          
         $customer_image = '';
         if (@$request->all()['images']) {
             $imageName = time().'.'.$request->images->extension();  
@@ -37,24 +36,25 @@ class ProjectModel extends Model implements Auditable
             $customer_image = 'images'.'/'.$imageName;
         }
         if($id){
-            $customer_data = ProjectModel::findorFail($id);
+           
+            $project_data = ProjectModel::findorFail($id);
             if ($customer_image) {
-                $image = '/'.$customer_data->images;
+                $image = '/'.$project_data->images;
                 $path = str_replace('\\','/',public_path());
                 if(file_exists($path.$image)){
                     unlink($path.$image);
                 } 
                 $data['customer_image'] = $customer_image;
             }
-              $customer_data->update($data);
+              $project_data->update($data);
         }else {
 
             $data['images'] = $customer_image;
             
     
-        $customer_data = ProjectModel::create($data);
+        $project_data = ProjectModel::create($data);
        }
-        return $customer_data->id;  
+        return $project_data->id;  
     }
 
         public function getStartDateAttribute($value)
@@ -74,9 +74,7 @@ class ProjectModel extends Model implements Auditable
        $this->attributes['end_date'] = Carbon::parse($value)->format('Y-m-d');
     }
     public function category(){
-        return $this->belongsTo('App\Models\CategoryModel');
+        return $this->belongsTo(CategoryModel::class,);
     }
-    
-
     
 }

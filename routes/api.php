@@ -25,6 +25,9 @@ Route::group(['prefix' => 'v1'], function () {
         Route::apiResource('project', 'ProjectController');
         Route::post('project/{id}', 'ProjectController@update');
 
+        //Api/Contact
+        Route::apiResource('contact', 'ContactController');
+
     });
  
 

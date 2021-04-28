@@ -47,4 +47,8 @@ class CategoryModel extends Model implements Auditable
     //     $category->update($data);
     //     return $data;
     // }
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'project_category_id');
+    }
 }

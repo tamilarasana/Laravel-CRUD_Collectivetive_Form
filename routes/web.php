@@ -24,7 +24,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function () {    
     Route::resource('employee', EmployeeController::class);
-     // Route::get('/download/{id}', [App\Http\Controllers\EmployeeController::class, 'downloadPDF']);
     Route::get('/helper', [App\Http\Controllers\EmployeeController::class, 'checkHelper']);
     Route::get('/delete/employee/{id}', [App\Http\Controllers\EmployeeController::class, 'destroy'])->name('employee.deleteRec');
     Route::get('/emp/{id}', [App\Http\Controllers\EmployeeController::class, 'getEmployeeById']); 
@@ -39,19 +38,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/update/book',[App\Http\Controllers\BookController::class, 'update'])->name('book.update');   
 
     //Category 
-    Route::resource('category', CategoryController::class);
+    Route::resource('category', CategoryController::class);   
     Route::post('/category/delete/{id}', [App\Http\Controllers\CategoryController::class, 'destroy']);
+    Route::get('lang/{locale}', [App\Http\Controllers\CategoryController::class, 'lang']);
+    Route::resource('project', ProjectController::class);
 
-    Route::resource('customercategory', CustomerCategoryController::class);
-    //  Route::get('/customercategory/{id}/edit/', [App\Http\Controllers\CustomerCategoryController::class, 'edit']);
-    // Route::resource('/customercategory', 'CustomerCategoryController',
-    // ['names' => [
-    //     'index' => 'customercategory.index',
-    //     'create' => 'customercategory.create',
-    //     'store' => 'customercategory.store',
-    //     'edit' => 'customercategory.edit',
-    //     'update' => 'customercategory.update',
-    //     'destroy' => 'customercategory.destroy'
-    // ]]);
+    Route::resource('contact', ContactController::class);
     
+
 });

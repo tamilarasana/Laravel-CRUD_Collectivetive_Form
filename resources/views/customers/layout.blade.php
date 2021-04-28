@@ -48,7 +48,7 @@
             confirm("Are You sure want to delete !");
         $.ajax({
                  type: "DELETE",
-                     url: "http://127.0.0.1:8000/customercategory/"+customer_id,
+                     url: "http://127.0.0.1:8000/project/"+customer_id,
                       data: {
                            "id": customer_id,
                            "_token": token,
@@ -82,7 +82,7 @@
             // var calcprice = (price - (price*discount/100)).toFixed(2);
             // total_cost.val(calcprice);
         // }
-        
-
+     
+  
 </script>
 </html>

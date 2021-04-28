@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right">
-                <a href="javascript:void(0)" class="btn btn-success mb-2 create_or_update_project" data-action="{!! route('customercategory.create') !!}" id="new-customer" data-toggle="modal">New Project</a>
+                <a href="javascript:void(0)" class="btn btn-success mb-2 create_or_update_project" data-action="{!! route('project.create') !!}" id="new-customer" data-toggle="modal">New Project</a>
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@
                                 <td>Deactive</td>
                             @endif
                         <td>
-                            <a href="javascript:void(0)" class="btn btn-success create_or_update_project" id="edit-customer{!! $customer->id !!}"  data-id="{{ $customer->id }}" data-action="{!! route('customercategory.edit', [$customer->id]) !!}" >Edit </a>
+                            <a href="javascript:void(0)" class="btn btn-success create_or_update_project" id="edit-customer{!! $customer->id !!}"  data-id="{{ $customer->id }}" data-action="{!! route('project    .edit', [$customer->id]) !!}" >Edit </a>
                             <a id="delete-customer{!!  $customer->id !!}" data-id="{{ $customer->id }}" class="btn btn-danger delete-user delete-customer">Delete</a></td>
                         </td>
                     </tr>

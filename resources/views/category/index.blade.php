@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12" style="text-align: center">
             <div >
-                <h2> Category List</h2>
+                <h2>{{__("lange.Category List")}}</h2>
             </div>
             <br/>
         </div>
@@ -11,10 +11,19 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right">
-                <a href="javascript:void(0)" class="btn btn-success mb-2 create_or_update_project" data-action="{!! route('category.create') !!}" id="new-customer" data-toggle="modal">New category</a>
+                <a href="javascript:void(0)" class="btn btn-success mb-2 create_or_update_project" data-action="{!! route('category.create') !!}" id="new-customer" data-toggle="modal">{{__("lange.New category")}}</a>
             </div>
         </div>
     </div>
+    <div class="dropdown" style="float: right;">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Language
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item"  href="{{ url('lang/en') }}">English</a>
+          <a class="dropdown-item"  href="{{ url('lang/de') }}">German</a>
+        </div>
+      </div>
     <br/>
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
@@ -26,9 +35,9 @@
             {{-- <table id="categoryTable" class="table table-hover ">--}}
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th width="280px">Action</th>
+                    <th>{{__("lange.Id")}}</th>
+                    <th>{{__("lange.Name")}}</th>
+                    <th width="280px">{{__("lange.Action")}}</th>
                 </tr>
             </thead>  
             <tbody>
@@ -38,8 +47,8 @@
                         <td>{{$catageory->id}}</td>
                         <td>{{$catageory->name}}</td>
                         <td>
-                            <a href="javascript:void(0)" class="btn btn-success create_or_update_project" id="edit-customer{!! $catageory->id !!}"  data-id="{{ $catageory->id }}" data-action="{!! route('category.edit', [$catageory->id]) !!}" >Edit </a>
-                            <a href="" id="delete-category{!!  $catageory->id !!}" data-id="{{ $catageory->id }}" class="btn btn-danger delete-user delete-category create_or_update_project">Delete</a></td>
+                            <a href="javascript:void(0)" class="btn btn-success create_or_update_project" id="edit-customer{!! $catageory->id !!}"  data-id="{{ $catageory->id }}" data-action="{!! route('category.edit', [$catageory->id]) !!}" >{{__("lange.Edit")}}</a>
+                            <a href="" id="delete-category{!!  $catageory->id !!}" data-id="{{ $catageory->id }}" class="btn btn-danger delete-user delete-category create_or_update_project">{{__("lange.Delete")}}</a></td>
                         </td>                                                                  
                     </tr>
                 @endforeach
@@ -59,6 +68,6 @@
     <script>
     $(document).ready(function() {
     $('#categoryTable').DataTable();
-    } );  
+    } );
     </script>
 @endsection

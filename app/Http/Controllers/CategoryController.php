@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CategorydataRequest;
 use App\Models\CategoryModel;
 use Redirect;
+use App;
 
 class CategoryController extends Controller
 {
@@ -37,21 +38,24 @@ class CategoryController extends Controller
    }
 
    public function update(CategorydataRequest $request, $id){
-        
+                
         $data = $this->categoryObject->createOrUpdatecategory($request, $id);
         return Redirect::route('category.index'); 
-        //    return Redirect::route('employee.index');
-       // $employee_data = Employee::findorFail($id);
    }
 
    public function destroy($id){   
-     //     dd($id);  
         $category = CategoryModel::find($id);    
-     //    dd($category);      
         $category->delete();           
         return response()->json([
           'message' => 'Data deleted successfully!'
         ]); 
    }
-   
+
+   public function lang($locale)
+     {
+          App::setLocale($locale);
+          session()->put('locale', $locale);
+          return redirect()->back();
+     }
+
 }
