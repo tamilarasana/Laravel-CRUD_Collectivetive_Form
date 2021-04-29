@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ContactModel;
+use App\Http\Requests\ContactRequest;
+use App;
 
 class ContactController extends Controller
 {
+    private $contactObject;
+
+    public function __construct(ContactModel  $contactObject){     
+        $this->contactObject = $contactObject;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-       return view ('contact.index');
+        $contact = $this->contactObject->getContactData();
+        return view ('contact.index', compact('contact'));   
+      
     }
 
     /**
@@ -23,7 +33,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('contact.create');
     }
 
     /**
@@ -32,9 +42,10 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
-        //
+        $contact = $this->contactObject->createOrUpdateContact($request);  
+        return redirect()->route('contact.index')->with('success');
     }
 
     /**
@@ -56,7 +67,8 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        //
+        $contact['contacts'] = ContactModel::findOrFail($id); 
+        return view('contact.edit',$contact);
     }
 
     /**
@@ -67,8 +79,9 @@ class ContactController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {  
+        $contact = $this->contactObject->createOrUpdateContact($request, $id);
+        return redirect()->route('contact.index')->with('success');
     }
 
     /**
@@ -79,6 +92,18 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contact = ContactModel::find($id);    
+        $contact->delete();           
+        return response()->json([
+          'message' => 'Data deleted successfully!'
+        ]); 
+    }
+
+    public function lang($locale)
+    {
+        // dd($locale);
+         App::setLocale($locale);
+         session()->put('locale', $locale);
+         return redirect()->back();
     }
 }

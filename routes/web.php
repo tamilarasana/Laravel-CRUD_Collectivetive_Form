@@ -40,10 +40,12 @@ Route::group(['middleware' => 'auth'], function () {
     //Category 
     Route::resource('category', CategoryController::class);   
     Route::post('/category/delete/{id}', [App\Http\Controllers\CategoryController::class, 'destroy']);
-    Route::get('lang/{locale}', [App\Http\Controllers\CategoryController::class, 'lang']);
+    // Route::get('lang/{locale}', [App\Http\Controllers\CategoryController::class, 'lang']);
     Route::resource('project', ProjectController::class);
 
     Route::resource('contact', ContactController::class);
+    Route::post('/contact/delete/{id}', [App\Http\Controllers\ContactController::class, 'destroy']);
+    Route::get('lang/{locale}', [App\Http\Controllers\ContactController::class, 'lang']);
     
 
 });

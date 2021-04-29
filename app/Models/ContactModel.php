@@ -42,13 +42,41 @@ class ContactModel extends Model implements Auditable
         return $query->get()->toArray();
     }
 
-    public function getDateOfBirthAttribute($date)
-    {
+    public function getDateOfBirthAttribute($date){
         return Carbon::parse($date)->format('d.m.Y');
     }
 
-    public function setDateOfBirthAttribute($date)
-    {
+    public function setDateOfBirthAttribute($date){
         $this->attributes['date_of_birth']  = Carbon::parse($date)->format('Y-m-d');
     }
+
+    public function getContactData(){
+        $contact  = ContactModel::get();
+        return $contact;
+    }
+    
+    public function createOrUpdateContact($request, $id=false){
+        $request = $request->except('_token');
+        if($id){    
+            $contact = ContactModel::findorFail($id);
+            $contact->update($request);
+        }else {                  
+            $contact = ContactModel::create($request);
+        }
+        return $contact->id;
+    }
 }
+
+
+    
+   
+  
+                 
+
+
+
+
+
+
+   
+   

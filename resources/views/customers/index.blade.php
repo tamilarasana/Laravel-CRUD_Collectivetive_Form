@@ -18,7 +18,7 @@
     <br/>
     @if ($cust = Session::get('success'))
     <div class="alert alert-success">
-        <p id="msg">{{ $cust }}fdfghgfchh </p>
+        <p id="msg">{{ $cust }} </p>
     </div>
     @endif
     {{-- <table id="categoryTable" class="table table-striped table-bordered" > --}}
