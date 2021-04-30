@@ -2,15 +2,15 @@
     <div class="row">
         <div class="col-md-4">      
             {!! Form::label('first_name', trans('lange.First Name') )  !!}  
-            {!! Form::text('first_name',@$contacts->first_name, ['class' => 'form-control', 'required','placeholder' => trans('lange.First Name'),  'pattern'=> '^[a-zA-Z.-]*$' ]) !!}
+            {!! Form::text('first_name',@$contacts->first_name, ['class' => 'form-control', 'required','placeholder' => trans('lange.First Name') ]) !!}
         </div>    
         <div class="col-md-4">      
             {!! Form::label('last_name', trans('lange.Last Name') )  !!}  
-            {!! Form::text('last_name', @$contacts->last_name, ['class' => 'form-control', 'required','placeholder' => trans('lange.Last Name'),  'pattern'=> '^[a-zA-Z.-]*$' ]) !!}
+            {!! Form::text('last_name', @$contacts->last_name, ['class' => 'form-control', 'required','placeholder' => trans('lange.Last Name') ]) !!}
         </div> 
         <div class="col-md-4">      
             {!! Form::label('phone_number', trans('lange.Phone Number') )  !!}  
-            {!! Form::text('phone_number', @$contacts->phone_number, ['class' => 'form-control', 'required','placeholder' => trans('lange.Phone Number'),  'pattern'=> '^[a-zA-Z0-9_.-]*$' ]) !!}
+            {!! Form::text('phone_number', @$contacts->phone_number, ['class' => 'form-control', 'required','placeholder' => trans('lange.Phone Number') ]) !!}
         </div>     
         <div class="col-md-4 py-4">      
             {!! Form::label('email',trans('lange.Email'))  !!}  
@@ -22,11 +22,12 @@
         </div>  
         <div class="col-md-4 py-4">      
             {!! Form::label('about_me', trans('lange.About me'))  !!}  
-            {!! Form::text('about_me', @$contacts->about_me, ['class' => 'form-control', 'required','placeholder' => trans('lange.About me'),  'pattern'=> '^[a-zA-Z0-9_.-]*$' ]) !!}
+            {!! Form::text('about_me', @$contacts->about_me, ['class' => 'form-control', 'required','placeholder' => trans('lange.About me')]) !!}
         </div>  
         <div class="col-md-4 ">      
             {!! Form::label('status',  trans('lange.Status'))  !!}  
-            {!! Form::text('status', @$contacts->status, ['class' => 'form-control', 'required','placeholder' => ' Status',  'pattern'=> '^[a-zA-Z0-9_.-]*$' ]) !!}
+            {{-- {!!  Form::select('status', [ '' => 'Select','1' => 'Active', '2' => 'Deactive'],@$project->status, ['class' => 'form-control']) !!}             --}}
+            {!! Form::select('status',[ '' => 'Select','1' => 'Active', '2' => 'Deactive'], @$contacts->status, ['class' => 'form-control', 'required']) !!}
         </div>     
     </div>
 </div>

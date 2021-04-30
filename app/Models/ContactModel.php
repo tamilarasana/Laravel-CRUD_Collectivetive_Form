@@ -35,48 +35,46 @@ class ContactModel extends Model implements Auditable
                     ->orwhere('date_of_birth', 'like', '%' . $search . '%')
                     ->orwhere('status', 'like', '%' . $search . '%');
             });
-        }  
-            if (@$conditions['status']) {
-                $query->where('status','=',$conditions['status']);
-            }        
+        }
+        if (@$conditions['status']) {
+            $query->where('status', '=', $conditions['status']);
+        }
         return $query->get()->toArray();
     }
 
-    public function getDateOfBirthAttribute($date){
+    //This function is used to Change the date Format 
+
+    public function getDateOfBirthAttribute($date)
+    {
         return Carbon::parse($date)->format('d.m.Y');
     }
 
-    public function setDateOfBirthAttribute($date){
+    //Set the date formate in database 
+
+    public function setDateOfBirthAttribute($date)
+    {
         $this->attributes['date_of_birth']  = Carbon::parse($date)->format('Y-m-d');
     }
 
-    public function getContactData(){
+    //Get the all contact in database  
+    
+    public function getContactData()
+    {
         $contact  = ContactModel::get();
         return $contact;
     }
-    
-    public function createOrUpdateContact($request, $id=false){
+
+    // Create and Update the Contact
+
+    public function createOrUpdateContact($request, $id = false)
+    {
         $request = $request->except('_token');
-        if($id){    
+        if ($id) {
             $contact = ContactModel::findorFail($id);
             $contact->update($request);
-        }else {                  
+        } else {
             $contact = ContactModel::create($request);
         }
         return $contact->id;
     }
 }
-
-
-    
-   
-  
-                 
-
-
-
-
-
-
-   
-   
